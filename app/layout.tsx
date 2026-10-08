@@ -2,6 +2,8 @@ import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Inter, Archivo } from 'next/font/google'
 import './globals.css'
+import { LoadingScreen } from '@/components/loading-screen'
+import { WhatsAppButton } from '@/components/whatsapp-button'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -78,7 +80,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${archivo.variable} bg-background`}>
       <body className="antialiased">
+        <LoadingScreen />
         {children}
+        <WhatsAppButton />
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>

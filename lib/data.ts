@@ -325,4 +325,6 @@ export const CONTACT = {
   location: 'Karachi, Pakistan',
   phone: '+92 300 1234567',
   email: 'hello@gymlaunch.pk',
+  whatsapp: '923001234567',
+  whatsappMessage: 'Hi GYM LAUNCH, I\u2019d like to know more about memberships.',
 }
