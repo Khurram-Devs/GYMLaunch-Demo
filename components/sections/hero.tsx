@@ -1,5 +1,7 @@
 import Image from 'next/image'
 import { VoltButton } from '@/components/volt-button'
+import { BRAND } from '@/lib/brand'
+import { whatsappLinkProps } from '@/lib/whatsapp'
 
 const HIGHLIGHTS = ['24/7 Access', 'Premium Equipment', 'Expert Coaching']
 
@@ -25,7 +27,7 @@ export function Hero() {
         <div className="max-w-3xl">
           <p className="mb-6 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-accent animate-in fade-in slide-in-from-bottom-4 duration-700">
             <span className="h-px w-8 bg-accent" aria-hidden="true" />
-            GYM LAUNCH / Karachi
+            {BRAND.name} / {BRAND.city}
           </p>
 
           <h1 className="font-display text-6xl font-extrabold uppercase leading-[0.86] tracking-tight text-balance sm:text-7xl lg:text-8xl xl:text-9xl animate-in fade-in slide-in-from-bottom-6 duration-1000">
@@ -41,7 +43,9 @@ export function Hero() {
           </p>
 
           <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center animate-in fade-in slide-in-from-bottom-8 duration-1000">
-            <VoltButton href="#membership">Start Your Journey</VoltButton>
+            <VoltButton {...whatsappLinkProps({ intent: 'join', source: 'hero' })}>
+              Start Your Journey
+            </VoltButton>
             <VoltButton href="#membership" variant="secondary" withArrow={false}>
               Explore Memberships
             </VoltButton>

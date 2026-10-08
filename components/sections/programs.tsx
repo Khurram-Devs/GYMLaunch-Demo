@@ -2,6 +2,7 @@ import { ArrowRight } from 'lucide-react'
 import { PROGRAMS } from '@/lib/data'
 import { SectionHeading } from '@/components/section-heading'
 import { Reveal } from '@/components/reveal'
+import { whatsappLinkProps } from '@/lib/whatsapp'
 
 export function Programs() {
   return (
@@ -30,7 +31,7 @@ export function Programs() {
           {PROGRAMS.map((program, i) => (
             <Reveal key={program.number} delay={i * 60}>
               <a
-                href="#membership"
+                {...whatsappLinkProps({ intent: 'program', source: 'programs', program: program.name })}
                 className="group grid grid-cols-1 items-center gap-4 border-b border-border py-8 transition-colors duration-300 hover:bg-foreground/[0.03] sm:grid-cols-12 sm:gap-6 sm:px-4"
               >
                 <span className="font-display text-sm font-bold tracking-widest text-accent sm:col-span-1">

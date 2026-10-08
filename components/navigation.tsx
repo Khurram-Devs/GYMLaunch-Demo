@@ -3,19 +3,15 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Menu, X } from 'lucide-react'
 import { NAV_LINKS } from '@/lib/data'
+import { BRAND } from '@/lib/brand'
+import { BrandMark } from '@/components/brand-mark'
+import { whatsappLinkProps } from '@/lib/whatsapp'
 import { cn } from '@/lib/utils'
 
 function Wordmark({ className }: { className?: string }) {
   return (
-    <a
-      href="#home"
-      className={cn(
-        'font-display text-lg font-extrabold uppercase tracking-[0.18em] text-foreground',
-        className,
-      )}
-      aria-label="GYM LAUNCH home"
-    >
-      GYM<span className="text-accent">.</span>LAUNCH
+    <a href="#home" className={className} aria-label={`${BRAND.name} home`}>
+      <BrandMark textClassName="text-lg" />
     </a>
   )
 }
@@ -135,7 +131,7 @@ export function Navigation() {
 
         <div className="hidden lg:block">
           <a
-            href="#membership"
+            {...whatsappLinkProps({ intent: 'join', source: 'nav' })}
             className="group inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-accent-foreground transition-all duration-300 hover:brightness-110 hover:shadow-[0_0_30px_-6px_var(--accent)]"
           >
             Join Now
@@ -198,7 +194,7 @@ export function Navigation() {
             </a>
           ))}
           <a
-            href="#membership"
+            {...whatsappLinkProps({ intent: 'join', source: 'nav-mobile' })}
             onClick={closeDrawer}
             className="mt-8 inline-flex w-full items-center justify-center rounded-full bg-accent px-6 py-4 text-sm font-semibold uppercase tracking-[0.16em] text-accent-foreground"
           >

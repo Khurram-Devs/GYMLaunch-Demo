@@ -6,6 +6,7 @@ import { PLANS } from '@/lib/data'
 import { SectionHeading } from '@/components/section-heading'
 import { Reveal } from '@/components/reveal'
 import { cn } from '@/lib/utils'
+import { whatsappLinkProps } from '@/lib/whatsapp'
 
 export function Membership() {
   const [yearly, setYearly] = useState(false)
@@ -122,7 +123,13 @@ export function Membership() {
                 </ul>
 
                 <a
-                  href="#final-cta"
+                  {...whatsappLinkProps({
+                    intent: 'plan',
+                    source: 'membership',
+                    plan: plan.name,
+                    price,
+                    billing: yearly ? 'yearly' : 'monthly',
+                  })}
                   className={cn(
                     'mt-9 inline-flex w-full items-center justify-center rounded-full px-6 py-4 text-xs font-semibold uppercase tracking-[0.16em] transition-all duration-300',
                     plan.featured

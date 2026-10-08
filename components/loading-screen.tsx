@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react'
 import { cn } from '@/lib/utils'
+import { BRAND } from '@/lib/brand'
+import { BrandMark } from '@/components/brand-mark'
 
 const MIN_VISIBLE_MS = 900
 const FADE_MS = 500
@@ -48,16 +50,14 @@ export function LoadingScreen() {
     <div
       role="status"
       aria-live="polite"
-      aria-label="Loading GYM LAUNCH"
+      aria-label={`Loading ${BRAND.name}`}
       className={cn(
         'fixed inset-0 z-[100] flex flex-col items-center justify-center gap-8 bg-background transition-opacity ease-out',
         leaving ? 'pointer-events-none opacity-0' : 'opacity-100',
       )}
       style={{ transitionDuration: `${FADE_MS}ms` }}
     >
-      <span className="font-display text-2xl font-extrabold uppercase tracking-[0.18em] text-foreground sm:text-3xl">
-        GYM<span className="text-accent">.</span>LAUNCH
-      </span>
+      <BrandMark textClassName="text-2xl sm:text-3xl" logoClassName="h-12" />
       <div className="h-0.5 w-40 overflow-hidden rounded-full bg-foreground/10">
         <div className="animate-loader-bar h-full w-2/5 rounded-full bg-accent" />
       </div>

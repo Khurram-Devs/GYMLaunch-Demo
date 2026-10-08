@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { Reveal } from '@/components/reveal'
 import { Eyebrow } from '@/components/section-heading'
+import { BRAND } from '@/lib/brand'
 
 const DETAILS = [
   { value: '2015', label: 'Established' },
@@ -18,7 +19,7 @@ export function About() {
             <div className="relative aspect-[4/5] w-full overflow-hidden rounded-lg sm:aspect-[5/5]">
               <Image
                 src="/images/about-main.png"
-                alt="Interior of the GYM LAUNCH training floor at dusk"
+                alt={`Interior of the ${BRAND.name} training floor at dusk`}
                 fill
                 sizes="(min-width: 1024px) 45vw, 90vw"
                 className="object-cover"
@@ -53,7 +54,7 @@ export function About() {
 
             <Reveal delay={100} className="flex flex-col gap-5 text-lg leading-relaxed text-muted-foreground text-pretty">
               <p>
-                GYM LAUNCH was built on a simple idea: performance is a
+                {BRAND.name} was built on a simple idea: performance is a
                 product of environment. Every rack, every square foot and every
                 coach here exists to make showing up the easy part.
               </p>

@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "check:brand": "node scripts/check-brand.mjs",
+    "predev": "node scripts/check-brand.mjs",
     "dev": "next dev",
+    "prebuild": "node scripts/check-brand.mjs",
     "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint ."

@@ -1,0 +1,22 @@
+{
+  "name": "GYM LAUNCH",
+  "tagline": "Premium Fitness Club",
+  "logo": "",
+  "logoIncludesName": false,
+  "primaryColor": "#ABF201",
+  "city": "Karachi",
+  "country": "Pakistan",
+  "address": "Khayaban-e-Ittehad, DHA Phase 6, Karachi",
+  "phone": "+92 300 1234567",
+  "whatsapp": "923001234567",
+  "email": "hello@gymlaunch.pk",
+  "timezone": "Asia/Karachi",
+  "hours": [
+    { "label": "Mon – Fri", "days": [1, 2, 3, 4, 5], "open": "05:00", "close": "23:00" },
+    { "label": "Saturday", "days": [6], "open": "07:00", "close": "21:00" },
+    { "label": "Sunday", "days": [0], "open": "08:00", "close": "18:00" }
+  ],
+  "rating": { "score": 4.8, "reviews": 312, "source": "Google" },
+  "mapImage": "",
+  "directionsUrl": ""
+}

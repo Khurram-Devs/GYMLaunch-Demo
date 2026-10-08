@@ -1,9 +1,12 @@
+import { BRAND } from '@/lib/brand'
+
 export const NAV_LINKS = [
   { label: 'Home', href: '#home' },
   { label: 'About', href: '#about' },
   { label: 'Programs', href: '#programs' },
   { label: 'Membership', href: '#membership' },
   { label: 'Trainers', href: '#trainers' },
+  { label: 'Visit', href: '#visit' },
 ] as const
 
 export const METRICS = [
@@ -163,7 +166,7 @@ export const PLANS: Plan[] = [
     name: 'Elite',
     monthly: 18000,
     yearly: 15300,
-    blurb: 'The complete GYM LAUNCH experience, with dedicated support.',
+    blurb: `The complete ${BRAND.name} experience, with dedicated support.`,
     features: [
       'Unlimited gym access',
       'All group classes',
@@ -300,14 +303,14 @@ export type Testimonial = {
 export const TESTIMONIALS: Testimonial[] = [
   {
     quote:
-      'GYM LAUNCH completely changed how I approach training. The environment makes consistency feel effortless, and the coaching is genuinely world class.',
+      `${BRAND.name} completely changed how I approach training. The environment makes consistency feel effortless, and the coaching is genuinely world class.`,
     name: 'Hamza',
     meta: 'Member since 2024',
     stat: 'Trains 5x / week',
   },
   {
     quote:
-      'I have trained at plenty of gyms in Karachi. Nothing comes close to this. The space, the people, the standard \u2014 it pushes you.',
+      `I have trained at plenty of gyms in ${BRAND.city}. Nothing comes close to this. The space, the people, the standard \u2014 it pushes you.`,
     name: 'Sana',
     meta: 'Member since 2023',
     stat: '+12kg strength gain',
@@ -322,9 +325,7 @@ export const TESTIMONIALS: Testimonial[] = [
 ]
 
 export const CONTACT = {
-  location: 'Karachi, Pakistan',
-  phone: '+92 300 1234567',
-  email: 'hello@gymlaunch.pk',
-  whatsapp: '923001234567',
-  whatsappMessage: 'Hi GYM LAUNCH, I\u2019d like to know more about memberships.',
+  location: BRAND.location,
+  phone: BRAND.phone,
+  email: BRAND.email,
 }
