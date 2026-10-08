@@ -2,6 +2,7 @@ import { ArrowUpRight } from 'lucide-react'
 import Image from 'next/image'
 import { InstagramIcon } from '@/components/social-icons'
 import { TRAINERS } from '@/lib/data'
+import { BRAND } from '@/lib/brand'
 import { SectionHeading } from '@/components/section-heading'
 import { Reveal } from '@/components/reveal'
 
@@ -23,7 +24,7 @@ export function Trainers() {
           <Reveal delay={100}>
             <p className="max-w-sm text-base leading-relaxed text-muted-foreground text-pretty">
               Certified, experienced and genuinely invested in your progress.
-              Our coaches are the heart of GYM LAUNCH.
+              Our coaches are the heart of {BRAND.name}.
             </p>
           </Reveal>
         </div>

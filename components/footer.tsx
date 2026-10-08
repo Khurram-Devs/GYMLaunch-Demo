@@ -1,5 +1,8 @@
 import { InstagramIcon, FacebookIcon, TikTokIcon } from '@/components/social-icons'
 import { CONTACT } from '@/lib/data'
+import { BRAND } from '@/lib/brand'
+import { BrandMark } from '@/components/brand-mark'
+import { formatRange } from '@/lib/hours'
 
 const FOOTER_LINKS = [
   { label: 'About', href: '#about' },
@@ -7,14 +10,10 @@ const FOOTER_LINKS = [
   { label: 'Trainers', href: '#trainers' },
   { label: 'Membership', href: '#membership' },
   { label: 'Classes', href: '#programs' },
+  { label: 'Visit', href: '#visit' },
   { label: 'Contact', href: '#final-cta' },
 ]
 
-const HOURS = [
-  { day: 'Mon \u2013 Fri', time: '05:00 \u2013 23:00' },
-  { day: 'Saturday', time: '07:00 \u2013 21:00' },
-  { day: 'Sunday', time: '08:00 \u2013 18:00' },
-]
 
 const SOCIALS = [
   { label: 'Instagram', icon: InstagramIcon, href: '#' },
@@ -29,12 +28,10 @@ export function Footer() {
         <div className="grid gap-12 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
           {/* Brand */}
           <div className="flex flex-col gap-6">
-            <span className="font-display text-2xl font-extrabold uppercase tracking-[0.14em] text-foreground">
-              GYM<span className="text-accent">.</span>LAUNCH
-            </span>
+            <BrandMark textClassName="text-2xl tracking-[0.14em]" logoClassName="h-10" />
             <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">
               A premium fitness club built for people who train with intent.
-              Karachi&apos;s home for serious progress.
+              {BRAND.city}&apos;s home for serious progress.
             </p>
             <div className="flex gap-3">
               {SOCIALS.map(({ label, icon: Icon, href }) => (
@@ -75,10 +72,10 @@ export function Footer() {
               Opening Hours
             </h3>
             <ul className="flex flex-col gap-3">
-              {HOURS.map((h) => (
-                <li key={h.day} className="flex flex-col text-sm">
-                  <span className="text-foreground/80">{h.day}</span>
-                  <span className="text-muted-foreground">{h.time}</span>
+              {BRAND.hours.map((h) => (
+                <li key={h.label} className="flex flex-col text-sm">
+                  <span className="text-foreground/80">{h.label}</span>
+                  <span className="text-muted-foreground">{formatRange(h)}</span>
                 </li>
               ))}
             </ul>
@@ -113,10 +110,13 @@ export function Footer() {
 
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 sm:flex-row">
           <p className="text-xs text-muted-foreground">
-            &copy; {new Date().getFullYear()} GYM Launch. All rights reserved.
+            &copy; {new Date().getFullYear()} {BRAND.name}. All rights reserved.
           </p>
-          <p className="text-xs text-muted-foreground">
-            Demo concept &middot; Karachi, Pakistan
+          <p className="flex items-center gap-4 text-xs text-muted-foreground">
+            <span>Demo concept &middot; {BRAND.location}</span>
+            <a href="/dashboard" className="text-foreground/70 transition-colors hover:text-accent">
+              Owner dashboard preview &rarr;
+            </a>
           </p>
         </div>
       </div>

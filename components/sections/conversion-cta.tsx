@@ -3,6 +3,8 @@ import Image from 'next/image'
 import { VoltButton } from '@/components/volt-button'
 import { Reveal } from '@/components/reveal'
 import { CONTACT } from '@/lib/data'
+import { BRAND } from '@/lib/brand'
+import { whatsappLinkProps } from '@/lib/whatsapp'
 
 export function ConversionCta() {
   return (
@@ -37,13 +39,15 @@ export function ConversionCta() {
           </Reveal>
           <Reveal delay={160}>
             <p className="mt-6 max-w-lg text-lg leading-relaxed text-muted-foreground text-pretty">
-              Your first step is simple. Come experience GYM LAUNCH for
+              Your first step is simple. Come experience {BRAND.name} for
               yourself &mdash; tour the floor, meet a coach, and feel the
               difference.
             </p>
           </Reveal>
           <Reveal delay={240} className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
-            <VoltButton href="#final-cta">Book a Free Visit</VoltButton>
+            <VoltButton {...whatsappLinkProps({ intent: 'visit', source: 'free-visit' })}>
+              Book a Free Visit
+            </VoltButton>
             <a
               href={`tel:${CONTACT.phone.replace(/\s/g, '')}`}
               className="group inline-flex items-center justify-center gap-2 rounded-full border border-border px-7 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-foreground transition-all duration-300 hover:border-foreground/40 hover:bg-foreground/5"

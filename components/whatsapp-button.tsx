@@ -1,17 +1,18 @@
-import { WhatsAppIcon } from '@/components/social-icons'
-import { CONTACT } from '@/lib/data'
+'use client'
 
-const WHATSAPP_URL = `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(
-  CONTACT.whatsappMessage,
-)}`
+import { usePathname } from 'next/navigation'
+import { WhatsAppIcon } from '@/components/social-icons'
+import { BRAND } from '@/lib/brand'
+import { whatsappLinkProps } from '@/lib/whatsapp'
 
 export function WhatsAppButton() {
+  const pathname = usePathname()
+  if (pathname?.startsWith('/dashboard')) return null
+
   return (
     <a
-      href={WHATSAPP_URL}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Chat with GYM LAUNCH on WhatsApp"
+      {...whatsappLinkProps({ source: 'floating' })}
+      aria-label={`Chat with ${BRAND.name} on WhatsApp`}
       className="group fixed bottom-5 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg shadow-black/40 transition-transform duration-300 hover:scale-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:bottom-7 sm:right-7"
     >
       <span

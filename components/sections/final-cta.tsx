@@ -3,6 +3,8 @@ import Image from 'next/image'
 import { VoltButton } from '@/components/volt-button'
 import { Reveal } from '@/components/reveal'
 import { CONTACT } from '@/lib/data'
+import { BRAND } from '@/lib/brand'
+import { whatsappLinkProps } from '@/lib/whatsapp'
 
 const CONTACT_ITEMS = [
   { icon: MapPin, label: CONTACT.location, href: undefined },
@@ -30,7 +32,7 @@ export function FinalCta() {
         <Reveal>
           <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.28em] text-accent">
             <span className="h-px w-6 bg-accent" aria-hidden="true" />
-            Join GYM Launch
+            Join {BRAND.name}
             <span className="h-px w-6 bg-accent" aria-hidden="true" />
           </span>
         </Reveal>
@@ -51,8 +53,14 @@ export function FinalCta() {
         </Reveal>
 
         <Reveal delay={240} className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
-          <VoltButton href="#membership">Join GYM Launch</VoltButton>
-          <VoltButton href={`tel:${CONTACT.phone.replace(/\s/g, '')}`} variant="secondary" withArrow={false}>
+          <VoltButton {...whatsappLinkProps({ intent: 'join', source: 'final-cta' })}>
+            Join {BRAND.name}
+          </VoltButton>
+          <VoltButton
+            {...whatsappLinkProps({ intent: 'visit', source: 'final-cta' })}
+            variant="secondary"
+            withArrow={false}
+          >
             Book a Visit
           </VoltButton>
         </Reveal>

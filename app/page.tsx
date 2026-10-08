@@ -10,12 +10,15 @@ import { Trainers } from '@/components/sections/trainers'
 import { Schedule } from '@/components/sections/schedule'
 import { Facilities } from '@/components/sections/facilities'
 import { Testimonials } from '@/components/sections/testimonials'
+import { Location } from '@/components/sections/location'
+import { LocalBusinessJsonLd } from '@/components/local-business-jsonld'
 import { FinalCta } from '@/components/sections/final-cta'
 import { Footer } from '@/components/footer'
 
 export default function Page() {
   return (
     <>
+      <LocalBusinessJsonLd />
       <Navigation />
       <main>
         <Hero />
@@ -29,6 +32,7 @@ export default function Page() {
         <Schedule />
         <Facilities />
         <Testimonials />
+        <Location />
         <FinalCta />
       </main>
       <Footer />

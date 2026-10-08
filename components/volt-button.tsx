@@ -3,7 +3,10 @@ import { cn } from '@/lib/utils'
 
 type Variant = 'primary' | 'secondary' | 'ghost'
 
-type VoltButtonProps = {
+type VoltButtonProps = Omit<
+  React.AnchorHTMLAttributes<HTMLAnchorElement>,
+  'children' | 'className' | 'href'
+> & {
   children: React.ReactNode
   href?: string
   variant?: Variant
@@ -30,9 +33,15 @@ export function VoltButton({
   className,
   withArrow = true,
   ariaLabel,
+  ...rest
 }: VoltButtonProps) {
   return (
-    <a href={href} aria-label={ariaLabel} className={cn(base, variants[variant], className)}>
+    <a
+      {...rest}
+      href={href}
+      aria-label={ariaLabel}
+      className={cn(base, variants[variant], className)}
+    >
       <span>{children}</span>
       {withArrow && (
         <ArrowRight

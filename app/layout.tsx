@@ -2,6 +2,8 @@ import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Inter, Archivo } from 'next/font/google'
 import './globals.css'
+import { BRAND } from '@/lib/brand'
+import { LeadTracker } from '@/components/lead-tracker'
 import { LoadingScreen } from '@/components/loading-screen'
 import { WhatsAppButton } from '@/components/whatsapp-button'
 
@@ -20,22 +22,18 @@ const archivo = Archivo({
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://gymlaunch.com'
 
+const TITLE = `${BRAND.name} \u2014 ${BRAND.tagline} in ${BRAND.city}`
+const OG_DESCRIPTION =
+  'Train hard. Become more. A premium training environment built for people who don\u2019t settle.'
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'GYM LAUNCH — Premium Fitness Club in Karachi',
-    template: '%s — GYM LAUNCH',
+    default: TITLE,
+    template: `%s \u2014 ${BRAND.name}`,
   },
-  description:
-    'GYM LAUNCH is a premium modern fitness club in Karachi built for people who train with intent. Expert coaching, elite equipment, 24/7 access.',
-  keywords: [
-    'gym',
-    'fitness',
-    'Karachi',
-    'personal training',
-    'strength',
-    'GYM LAUNCH',
-  ],
+  description: `${BRAND.name} is a premium modern fitness club in ${BRAND.city} built for people who train with intent. Expert coaching, elite equipment, 24/7 access.`,
+  keywords: ['gym', 'fitness', BRAND.city, 'personal training', 'strength', BRAND.name],
   alternates: {
     canonical: '/',
   },
@@ -48,19 +46,17 @@ export const metadata: Metadata = {
     apple: '/apple-touch-icon.png',
   },
   openGraph: {
-    title: 'GYM LAUNCH — Premium Fitness Club in Karachi',
-    description:
-      'Train hard. Become more. A premium training environment built for people who don\u2019t settle.',
+    title: TITLE,
+    description: OG_DESCRIPTION,
     url: SITE_URL,
-    siteName: 'GYM LAUNCH',
+    siteName: BRAND.name,
     type: 'website',
     images: ['/images/hero.png'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'GYM LAUNCH — Premium Fitness Club in Karachi',
-    description:
-      'Train hard. Become more. A premium training environment built for people who don\u2019t settle.',
+    title: TITLE,
+    description: OG_DESCRIPTION,
     images: ['/images/hero.png'],
   },
 }
@@ -78,9 +74,14 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${archivo.variable} bg-background`}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${archivo.variable} bg-background`}
+      style={BRAND.themeVars as React.CSSProperties}
+    >
       <body className="antialiased">
         <LoadingScreen />
+        <LeadTracker />
         {children}
         <WhatsAppButton />
         {process.env.NODE_ENV === 'production' && <Analytics />}
