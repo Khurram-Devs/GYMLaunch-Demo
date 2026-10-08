@@ -102,6 +102,32 @@
   .animate-scroll-line {
     animation: scrollLine 1.8s ease-in-out infinite;
   }
+
+  @keyframes loaderBar {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(250%);
+    }
+  }
+  .animate-loader-bar {
+    animation: loaderBar 1.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  }
+
+  @keyframes waPulse {
+    0% {
+      transform: scale(1);
+      opacity: 0.55;
+    }
+    100% {
+      transform: scale(1.7);
+      opacity: 0;
+    }
+  }
+  .animate-wa-pulse {
+    animation: waPulse 2.2s ease-out infinite;
+  }
 }
 
 /* Custom scrollbar */
