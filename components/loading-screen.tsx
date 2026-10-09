@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { cn } from '@/lib/utils'
 import { BRAND } from '@/lib/brand'
 import { BrandMark } from '@/components/brand-mark'
+import { setScrollLock } from '@/lib/scroll-lock'
 
 const MIN_VISIBLE_MS = 900
 const FADE_MS = 500
@@ -37,11 +38,8 @@ export function LoadingScreen() {
 
   useEffect(() => {
     if (removed) return
-    const previous = document.documentElement.style.overflow
-    document.documentElement.style.overflow = 'hidden'
-    return () => {
-      document.documentElement.style.overflow = previous
-    }
+    setScrollLock('loader', true)
+    return () => setScrollLock('loader', false)
   }, [removed])
 
   if (removed) return null
@@ -57,7 +55,7 @@ export function LoadingScreen() {
       )}
       style={{ transitionDuration: `${FADE_MS}ms` }}
     >
-      <BrandMark textClassName="text-2xl sm:text-3xl" logoClassName="h-12" />
+      <BrandMark textClassName="text-2xl sm:text-3xl" logoClassName="h-10" />
       <div className="h-0.5 w-40 overflow-hidden rounded-full bg-foreground/10">
         <div className="animate-loader-bar h-full w-2/5 rounded-full bg-accent" />
       </div>

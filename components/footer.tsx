@@ -28,9 +28,9 @@ export function Footer() {
         <div className="grid gap-12 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
           {/* Brand */}
           <div className="flex flex-col gap-6">
-            <BrandMark textClassName="text-2xl tracking-[0.14em]" logoClassName="h-10" />
+            <BrandMark textClassName="text-2xl tracking-[0.14em]" logoClassName="h-8" />
             <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">
-              A premium fitness club built for people who train with intent.
+              A premium fitness club built for people who train with intent.{' '}
               {BRAND.city}&apos;s home for serious progress.
             </p>
             <div className="flex gap-3">

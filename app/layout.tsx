@@ -4,6 +4,7 @@ import { Inter, Archivo } from 'next/font/google'
 import './globals.css'
 import { BRAND } from '@/lib/brand'
 import { LeadTracker } from '@/components/lead-tracker'
+import { SmoothScroll } from '@/components/smooth-scroll'
 import { LoadingScreen } from '@/components/loading-screen'
 import { WhatsAppButton } from '@/components/whatsapp-button'
 
@@ -23,8 +24,7 @@ const archivo = Archivo({
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://gymlaunch.com'
 
 const TITLE = `${BRAND.name} \u2014 ${BRAND.tagline} in ${BRAND.city}`
-const OG_DESCRIPTION =
-  'Train hard. Become more. A premium training environment built for people who don\u2019t settle.'
+const OG_DESCRIPTION = `${BRAND.slogan.join(' ')} A premium training environment built for people who don\u2019t settle.`
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -82,6 +82,7 @@ export default function RootLayout({
       <body className="antialiased">
         <LoadingScreen />
         <LeadTracker />
+        <SmoothScroll />
         {children}
         <WhatsAppButton />
         {process.env.NODE_ENV === 'production' && <Analytics />}

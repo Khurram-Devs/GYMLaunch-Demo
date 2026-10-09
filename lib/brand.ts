@@ -11,8 +11,9 @@ export type HoursGroup = {
 export type GymConfig = {
   name: string
   tagline: string
+  slogan: string[]
   logo: string
-  logoIncludesName: boolean
+  showNameWithLogo: boolean
   primaryColor: string
   city: string
   country: string
@@ -33,6 +34,7 @@ const digits = (value: string) => value.replace(/\D/g, '')
 
 export const BRAND = {
   ...gym,
+  slogan: [gym.slogan[0] ?? '', gym.slogan[1] ?? ''] as const,
   whatsapp: digits(gym.whatsapp || gym.phone),
   location: `${gym.city}, ${gym.country}`,
   logoSrc: gym.logo ? `/brand/${gym.logo}` : null,

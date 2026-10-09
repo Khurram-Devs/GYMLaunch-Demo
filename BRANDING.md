@@ -5,8 +5,10 @@ Edit `gym.config.json`, then restart `npm run dev` (or rebuild). Everything else
 | Key | What it does |
 | --- | --- |
 | `name` | Gym name everywhere: nav, headings, WhatsApp messages, page title |
+| `tagline` | Short descriptor used in the browser title, e.g. "Premium Fitness Club" |
 | `logo` | File name inside `public/brand/` (e.g. `logo.png`). Empty shows a text wordmark |
-| `logoIncludesName` | `true` if the logo image already contains the gym name |
+| `showNameWithLogo` | `true`: small logo on the left with the gym name beside it. `false`: logo only (use when the logo already contains the name) |
+| `slogan` | Two strings for the hero headline: first line white, second line in the accent color. Each stays on one line and the size auto-fits (max 24 characters each) |
 | `primaryColor` | Hex color. Accent, button text color and dark surface tints are derived from it |
 | `city`, `country`, `address` | Hero label, location section, directions link |
 | `phone`, `whatsapp`, `email` | Call, WhatsApp (`wa.me`, digits only) and email links |

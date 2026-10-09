@@ -119,7 +119,7 @@ export function LeadsChart({ values }: LeadsChartProps) {
 
 export function LeadsTable({ values }: LeadsChartProps) {
   return (
-    <div className="max-h-60 overflow-y-auto">
+    <div className="max-h-60 overflow-y-auto" data-lenis-prevent>
       <table className="w-full text-left text-sm">
         <thead className="sticky top-0 bg-card text-xs uppercase tracking-[0.14em] text-muted-foreground">
           <tr>

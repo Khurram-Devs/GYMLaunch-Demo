@@ -9,7 +9,7 @@ type BrandMarkProps = {
 
 export function BrandMark({ className, textClassName, logoClassName }: BrandMarkProps) {
   const parts = wordmarkParts(BRAND.name)
-  const showText = !BRAND.logoSrc || !BRAND.logoIncludesName
+  const showText = !BRAND.logoSrc || BRAND.showNameWithLogo
 
   return (
     <span className={cn('inline-flex items-center gap-3', className)}>
@@ -18,7 +18,7 @@ export function BrandMark({ className, textClassName, logoClassName }: BrandMark
         <img
           src={BRAND.logoSrc}
           alt={showText ? '' : BRAND.name}
-          className={cn('h-8 w-auto object-contain', logoClassName)}
+          className={cn(showText ? 'h-7' : 'h-9', 'w-auto object-contain', logoClassName)}
         />
       )}
       {showText && (
