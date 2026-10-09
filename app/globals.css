@@ -130,22 +130,13 @@
   }
 }
 
-/* Custom scrollbar */
+/* Scrollbars are hidden everywhere; scrolling still works */
 * {
-  scrollbar-color: oklch(0.32 0.006 260) var(--background);
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
-::-webkit-scrollbar {
-  width: 10px;
-}
-::-webkit-scrollbar-track {
-  background: var(--background);
-}
-::-webkit-scrollbar-thumb {
-  background: oklch(0.32 0.006 260);
-  border-radius: 999px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: oklch(0.4 0.006 260);
+*::-webkit-scrollbar {
+  display: none;
 }
 
 /* Respect reduced-motion preference globally, including third-party

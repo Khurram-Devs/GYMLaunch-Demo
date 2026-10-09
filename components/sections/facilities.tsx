@@ -62,6 +62,7 @@ export function Facilities() {
           role="region"
           aria-label="Facility gallery — scroll or drag horizontally"
           tabIndex={0}
+          data-lenis-prevent-horizontal
           className="flex cursor-grab snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-4 active:cursor-grabbing sm:px-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {FACILITIES.map((facility, i) => (

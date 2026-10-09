@@ -6,6 +6,7 @@ import { NAV_LINKS } from '@/lib/data'
 import { BRAND } from '@/lib/brand'
 import { BrandMark } from '@/components/brand-mark'
 import { whatsappLinkProps } from '@/lib/whatsapp'
+import { setScrollLock } from '@/lib/scroll-lock'
 import { cn } from '@/lib/utils'
 
 function Wordmark({ className }: { className?: string }) {
@@ -49,16 +50,15 @@ export function Navigation() {
   }, [])
 
   const closeDrawer = useCallback(() => {
+    setScrollLock('menu', false)
     setOpen(false)
     triggerRef.current?.focus()
   }, [])
 
   useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : ''
+    setScrollLock('menu', open)
     if (open) firstLinkRef.current?.focus()
-    return () => {
-      document.body.style.overflow = ''
-    }
+    return () => setScrollLock('menu', false)
   }, [open])
 
   useEffect(() => {

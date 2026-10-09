@@ -119,7 +119,7 @@ export function DashboardView() {
       <header className="border-b border-border">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-5 py-5 sm:px-8">
           <div className="flex items-center gap-4">
-            <BrandMark textClassName="text-base" logoClassName="h-7" />
+            <BrandMark textClassName="text-base" />
             <span className="hidden h-5 w-px bg-border sm:block" aria-hidden="true" />
             <span className="text-sm font-medium text-foreground/80">Owner dashboard</span>
             <span className="rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-accent">
@@ -259,7 +259,7 @@ export function DashboardView() {
             </div>
           </div>
 
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto" data-lenis-prevent-horizontal>
             <table className="w-full min-w-[640px] text-left text-sm">
               <thead className="text-xs uppercase tracking-[0.14em] text-muted-foreground">
                 <tr className="border-b border-border">

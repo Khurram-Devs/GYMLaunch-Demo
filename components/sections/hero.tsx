@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { VoltButton } from '@/components/volt-button'
 import { BRAND } from '@/lib/brand'
 import { whatsappLinkProps } from '@/lib/whatsapp'
+import { HeroSlogan } from '@/components/hero-slogan'
 
 const HIGHLIGHTS = ['24/7 Access', 'Premium Equipment', 'Expert Coaching']
 
@@ -24,17 +25,13 @@ export function Hero() {
 
       {/* Content */}
       <div className="relative mx-auto flex min-h-svh max-w-7xl flex-col justify-end px-5 pb-16 pt-28 sm:px-8 lg:pb-24">
-        <div className="max-w-3xl">
+        <div>
           <p className="mb-6 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-accent animate-in fade-in slide-in-from-bottom-4 duration-700">
             <span className="h-px w-8 bg-accent" aria-hidden="true" />
             {BRAND.name} / {BRAND.city}
           </p>
 
-          <h1 className="font-display text-6xl font-extrabold uppercase leading-[0.86] tracking-tight text-balance sm:text-7xl lg:text-8xl xl:text-9xl animate-in fade-in slide-in-from-bottom-6 duration-1000">
-            Train Hard.
-            <br />
-            <span className="text-accent">Become More.</span>
-          </h1>
+          <HeroSlogan lines={BRAND.slogan} />
 
           <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground text-pretty animate-in fade-in slide-in-from-bottom-8 duration-1000">
             A premium training environment engineered for people who take their
@@ -66,7 +63,7 @@ export function Hero() {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 right-5 hidden items-center gap-3 sm:right-8 lg:flex">
+      <div className="absolute bottom-8 right-5 hidden items-center gap-3 sm:right-24 lg:flex">
         <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-muted-foreground">
           Scroll
         </span>

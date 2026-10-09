@@ -12,6 +12,19 @@ for (const key of requiredStrings) {
   if (typeof config[key] !== 'string' || !config[key].trim()) errors.push(`"${key}" is required`)
 }
 
+if (typeof config.showNameWithLogo !== 'boolean') {
+  errors.push('"showNameWithLogo" must be true or false')
+}
+
+const SLOGAN_MAX_LENGTH = 24
+if (
+  !Array.isArray(config.slogan) ||
+  config.slogan.length !== 2 ||
+  config.slogan.some((line) => typeof line !== 'string' || !line.trim() || line.length > SLOGAN_MAX_LENGTH)
+) {
+  errors.push(`"slogan" must be two non-empty strings of at most ${SLOGAN_MAX_LENGTH} characters, e.g. ["Train Hard.", "Become More."]`)
+}
+
 if (!/^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(config.primaryColor ?? '')) {
   errors.push('"primaryColor" must be a hex color like #F8B516')
 }
