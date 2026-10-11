@@ -39,7 +39,7 @@ function OpenBadge({ status }: { status: OpenStatus | null }) {
   return (
     <span
       className={cn(
-        'inline-flex items-center gap-2.5 rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em]',
+        'inline-flex max-w-full flex-wrap items-center gap-x-2.5 gap-y-1 rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em]',
         status.open
           ? 'border-emerald-400/30 bg-emerald-400/10 text-emerald-300'
           : 'border-rose-400/30 bg-rose-400/10 text-rose-300',
@@ -72,7 +72,7 @@ export function Location() {
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_1fr] lg:gap-16">
           <Reveal className="relative">
-            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-border bg-muted">
+            <div className="relative aspect-[5/4] w-full overflow-hidden rounded-xl sm:aspect-[4/3] border border-border bg-muted">
               {BRAND.mapSrc ? (
                 <Image
                   src={BRAND.mapSrc}

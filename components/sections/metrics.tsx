@@ -14,15 +14,15 @@ function Metric({
 }) {
   const { value: count, ref } = useCountUp(value)
   return (
-    <div className="flex flex-col gap-3 px-6 py-10 lg:px-10">
+    <div className="flex min-w-0 flex-col gap-3 px-4 py-8 sm:px-6 sm:py-10 lg:px-10">
       <span
         ref={ref}
-        className="font-display text-5xl font-extrabold tracking-tight text-foreground sm:text-6xl lg:text-7xl"
+        className="font-display text-3xl font-extrabold tracking-tight text-foreground min-[400px]:text-4xl sm:text-6xl lg:text-7xl"
       >
         {count.toLocaleString()}
         <span className="text-accent">{suffix}</span>
       </span>
-      <span className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">
+      <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground sm:text-xs sm:tracking-[0.22em]">
         {label}
       </span>
     </div>

@@ -160,7 +160,7 @@ export function Navigation() {
         aria-label="Mobile navigation"
         inert={!open}
         className={cn(
-          'fixed inset-0 z-50 flex flex-col bg-background transition-all duration-500 lg:hidden',
+          'fixed inset-0 z-50 flex flex-col overflow-y-auto overscroll-contain bg-background transition-all duration-500 lg:hidden',
           open ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0',
         )}
       >
@@ -176,7 +176,11 @@ export function Navigation() {
           </button>
         </div>
 
-        <nav className="flex flex-1 flex-col justify-center gap-2 px-6 pb-16" aria-label="Mobile">
+        <nav
+          className="flex flex-1 flex-col justify-center-safe gap-2 px-6 pb-10"
+          aria-label="Mobile"
+          data-lenis-prevent
+        >
           {NAV_LINKS.map((link, i) => (
             <a
               key={link.href}
@@ -184,7 +188,7 @@ export function Navigation() {
               href={link.href}
               onClick={closeDrawer}
               className={cn(
-                'font-display text-4xl font-extrabold uppercase tracking-tight text-foreground transition-all duration-500',
+                'font-display text-4xl font-extrabold uppercase tracking-tight text-foreground transition-all duration-500 [@media(max-height:640px)]:text-3xl',
                 open ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0',
               )}
               style={{ transitionDelay: open ? `${120 + i * 60}ms` : '0ms' }}

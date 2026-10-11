@@ -38,7 +38,7 @@ export function FinalCta() {
         </Reveal>
 
         <Reveal delay={80}>
-          <h2 className="mt-8 font-display text-5xl font-extrabold uppercase leading-[0.88] tracking-tight text-balance sm:text-7xl lg:text-8xl">
+          <h2 className="mt-8 font-display text-4xl font-extrabold uppercase leading-[0.88] tracking-tight text-balance min-[420px]:text-5xl sm:text-7xl lg:text-8xl">
             Your Next Level
             <br />
             <span className="text-accent">Starts Here.</span>

@@ -23,7 +23,7 @@ export function Testimonials() {
             <Reveal
               key={t.name}
               delay={i * 90}
-              className="flex flex-col justify-between gap-8 rounded-xl border border-border bg-card/50 p-8 transition-colors duration-300 hover:border-foreground/20"
+              className="flex flex-col justify-between gap-8 rounded-xl border border-border bg-card/50 p-6 transition-colors sm:p-8 duration-300 hover:border-foreground/20"
             >
               <div className="flex flex-col gap-6">
                 <Quote className="h-8 w-8 text-accent" aria-hidden="true" />
@@ -32,7 +32,7 @@ export function Testimonials() {
                 </p>
               </div>
 
-              <div className="flex items-center justify-between border-t border-border pt-6">
+              <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border pt-6">
                 <div className="flex flex-col">
                   <span className="font-display text-sm font-extrabold uppercase tracking-wide text-foreground">
                     {t.name}

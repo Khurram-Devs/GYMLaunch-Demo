@@ -65,13 +65,13 @@ export function About() {
               </p>
             </Reveal>
 
-            <Reveal delay={200} className="mt-2 grid grid-cols-3 gap-4 border-t border-border pt-8">
+            <Reveal delay={200} className="mt-2 grid grid-cols-3 gap-3 border-t border-border pt-8 sm:gap-4">
               {DETAILS.map((d) => (
-                <div key={d.label} className="flex flex-col gap-1">
-                  <span className="font-display text-2xl font-extrabold tracking-tight text-foreground sm:text-3xl">
+                <div key={d.label} className="flex min-w-0 flex-col gap-1">
+                  <span className="font-display text-xl font-extrabold tracking-tight text-foreground min-[400px]:text-2xl sm:text-3xl">
                     {d.value}
                   </span>
-                  <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.1em] text-muted-foreground sm:text-[11px] sm:tracking-[0.18em]">
                     {d.label}
                   </span>
                 </div>

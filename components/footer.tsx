@@ -25,9 +25,9 @@ export function Footer() {
   return (
     <footer className="border-t border-border bg-background">
       <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:py-20">
-        <div className="grid gap-12 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-12 lg:grid-cols-[1.5fr_1fr_1fr_1fr] lg:gap-x-12">
           {/* Brand */}
-          <div className="flex flex-col gap-6">
+          <div className="col-span-2 flex flex-col gap-6 lg:col-span-1">
             <BrandMark textClassName="text-2xl tracking-[0.14em]" logoClassName="h-8" />
             <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">
               A premium fitness club built for people who train with intent.{' '}
@@ -82,7 +82,7 @@ export function Footer() {
           </div>
 
           {/* Contact */}
-          <div className="flex flex-col gap-4">
+          <div className="col-span-2 flex flex-col gap-4 lg:col-span-1">
             <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
               Contact
             </h3>
@@ -112,7 +112,7 @@ export function Footer() {
           <p className="text-xs text-muted-foreground">
             &copy; {new Date().getFullYear()} {BRAND.name}. All rights reserved.
           </p>
-          <p className="flex items-center gap-4 text-xs text-muted-foreground">
+          <p className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-center text-xs text-muted-foreground">
             <span>Demo concept &middot; {BRAND.location}</span>
             <a href="/dashboard" className="text-foreground/70 transition-colors hover:text-accent">
               Owner dashboard preview &rarr;

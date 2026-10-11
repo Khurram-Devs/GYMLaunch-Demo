@@ -74,14 +74,14 @@ export function Membership() {
                 key={plan.id}
                 delay={i * 90}
                 className={cn(
-                  'relative flex flex-col rounded-xl border p-8 transition-all duration-300',
+                  'relative flex flex-col rounded-xl border p-6 transition-all duration-300 sm:p-8',
                   plan.featured
                     ? 'border-accent/60 bg-card shadow-[0_0_60px_-20px_var(--accent)] lg:scale-[1.04] lg:py-11'
                     : 'border-border bg-card/40 hover:border-foreground/25',
                 )}
               >
                 {plan.featured && (
-                  <span className="absolute -top-3 left-8 rounded-full bg-accent px-4 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-accent-foreground">
+                  <span className="absolute -top-3 left-6 rounded-full sm:left-8 bg-accent px-4 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-accent-foreground">
                     Most Popular
                   </span>
                 )}
@@ -95,9 +95,9 @@ export function Membership() {
                   {plan.blurb}
                 </p>
 
-                <div className="mt-8 flex items-end gap-1.5">
+                <div className="mt-8 flex flex-wrap items-end gap-1.5">
                   <span className="text-sm font-semibold text-muted-foreground">PKR</span>
-                  <span className="font-display text-5xl font-extrabold tracking-tight text-foreground tabular-nums">
+                  <span className="font-display text-4xl font-extrabold sm:text-5xl tracking-tight text-foreground tabular-nums">
                     {price.toLocaleString()}
                   </span>
                   <span className="mb-1.5 text-sm text-muted-foreground">/ mo</span>

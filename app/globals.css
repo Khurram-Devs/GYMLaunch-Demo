@@ -60,6 +60,8 @@
   }
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    /* Safety net: never allow sideways scrolling on small screens */
+    overflow-x: clip;
   }
   ::selection {
     background: var(--accent);
