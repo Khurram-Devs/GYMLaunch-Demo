@@ -1,7 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { Check } from 'lucide-react'
+import { Check, Sparkles } from 'lucide-react'
+import { PlanQuiz } from '@/components/plan-quiz'
 import { PLANS } from '@/lib/data'
 import { SectionHeading } from '@/components/section-heading'
 import { Reveal } from '@/components/reveal'
@@ -10,6 +11,7 @@ import { whatsappLinkProps } from '@/lib/whatsapp'
 
 export function Membership() {
   const [yearly, setYearly] = useState(false)
+  const [quizOpen, setQuizOpen] = useState(false)
 
   return (
     <section id="membership" className="relative py-24 lg:py-36">
@@ -61,6 +63,18 @@ export function Membership() {
               >
                 -15%
               </span>
+            </button>
+          </Reveal>
+
+          <Reveal delay={140} className="flex flex-col items-center gap-3">
+            <p className="text-sm text-muted-foreground">Not sure which membership suits you?</p>
+            <button
+              type="button"
+              onClick={() => setQuizOpen(true)}
+              className="inline-flex items-center gap-2 rounded-full border border-accent/60 bg-accent/10 px-6 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-accent transition-all duration-300 hover:bg-accent hover:text-accent-foreground hover:shadow-[0_0_30px_-6px_var(--accent)]"
+            >
+              <Sparkles className="h-4 w-4" aria-hidden="true" />
+              Find Your Plan
             </button>
           </Reveal>
         </div>
@@ -144,6 +158,8 @@ export function Membership() {
           })}
         </div>
       </div>
+
+      <PlanQuiz open={quizOpen} onClose={() => setQuizOpen(false)} />
     </section>
   )
 }
