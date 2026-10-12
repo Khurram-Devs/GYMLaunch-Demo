@@ -54,8 +54,8 @@ export function HeroSlogan({ lines }: HeroSloganProps) {
   return (
     <div className="relative">
       <h1 ref={headingRef} className={`relative z-10 ${HEADING_CLASS}`}>
-        <span className="block w-max whitespace-nowrap">{lines[0]}</span>
-        <span className="block w-max whitespace-nowrap text-accent">{lines[1]}</span>
+        <span className="mx-auto block w-max whitespace-nowrap">{lines[0]}</span>
+        <span className="mx-auto block w-max whitespace-nowrap text-accent">{lines[1]}</span>
       </h1>
 
       <div
@@ -63,10 +63,10 @@ export function HeroSlogan({ lines }: HeroSloganProps) {
         aria-hidden="true"
         className={`pointer-events-none absolute inset-0 z-30 select-none ${HEADING_CLASS}`}
       >
-        <span className="text-outline block w-max whitespace-nowrap [--outline-color:var(--foreground)]">
+        <span className="text-outline mx-auto block w-max whitespace-nowrap [--outline-color:var(--foreground)]">
           {lines[0]}
         </span>
-        <span className="text-outline block w-max whitespace-nowrap [--outline-color:var(--accent)]">
+        <span className="text-outline mx-auto block w-max whitespace-nowrap [--outline-color:var(--accent)]">
           {lines[1]}
         </span>
       </div>

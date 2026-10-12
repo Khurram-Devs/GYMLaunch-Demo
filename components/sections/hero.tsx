@@ -47,7 +47,7 @@ export function Hero() {
         <div>
           <HeroSlogan lines={BRAND.slogan} />
 
-          <div className="relative z-40 mt-10 flex flex-col gap-4 sm:flex-row sm:items-center animate-in fade-in slide-in-from-bottom-8 duration-1000">
+          <div className="relative z-40 mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row animate-in fade-in slide-in-from-bottom-8 duration-1000">
             <VoltButton {...whatsappLinkProps({ intent: 'join', source: 'hero' })}>
               Start Your Journey
             </VoltButton>
@@ -56,7 +56,7 @@ export function Hero() {
             </VoltButton>
           </div>
 
-          <ul className="relative z-40 mt-14 flex flex-wrap gap-x-8 gap-y-3">
+          <ul className="relative z-40 mt-14 flex flex-wrap justify-center gap-x-8 gap-y-3">
             {HIGHLIGHTS.map((item) => (
               <li
                 key={item}
