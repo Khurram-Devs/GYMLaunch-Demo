@@ -169,6 +169,52 @@
     animation: offersSheen 5s ease-in-out infinite;
   }
 
+  /* Hero headline outline overlay */
+  .text-outline {
+    color: transparent;
+    -webkit-text-stroke: clamp(1px, 0.014em, 2px) var(--outline-color, #fff);
+  }
+
+  /* Hero athlete: reveal after the text, then a gentle float */
+  @keyframes heroAthleteReveal {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 56px, 0) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+  }
+  @keyframes heroAthleteFloat {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+    50% {
+      transform: translate3d(0, -10px, 0);
+    }
+  }
+  .hero-athlete-reveal {
+    opacity: 0;
+    transform-origin: 50% 100%;
+    will-change: transform, opacity;
+    animation: heroAthleteReveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) 1.5s forwards;
+  }
+  .hero-athlete-float {
+    will-change: transform;
+    animation: heroAthleteFloat 7s ease-in-out 2.9s infinite;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-athlete-reveal {
+      opacity: 1;
+      animation: none;
+    }
+    .hero-athlete-float {
+      animation: none;
+    }
+  }
+
   @keyframes offerZoom {
     from {
       transform: scale(1.12);
