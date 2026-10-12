@@ -21,6 +21,10 @@ export type TrainingPanel = {
   title: string
   description: string
   image: string
+  tagline: string
+  highlights: string[]
+  facts: { label: string; value: string }[]
+  enquiry: string
 }
 
 export const TRAINING_PANELS: TrainingPanel[] = [
@@ -30,6 +34,20 @@ export const TRAINING_PANELS: TrainingPanel[] = [
     description:
       'Barbell fundamentals and progressive overload in a fully equipped platform zone.',
     image: '/images/facility-strength.png',
+    tagline: 'Build raw, repeatable strength.',
+    highlights: [
+      'Racks, platforms and a full free-weight zone',
+      'Progressive overload programming that keeps you moving forward',
+      'Coach form checks on the main lifts',
+      'Technique onboarding for first-timers',
+    ],
+    facts: [
+      { label: 'Format', value: 'Self-guided or coached' },
+      { label: 'Level', value: 'Beginner to advanced' },
+      { label: 'Best for', value: 'Strength, size and power' },
+    ],
+    enquiry:
+      'I’m interested in Strength training. Could you tell me about the platform zone, coaching options and how I can get started?',
   },
   {
     id: 'conditioning',
@@ -37,6 +55,20 @@ export const TRAINING_PANELS: TrainingPanel[] = [
     description:
       'High-output circuits engineered to build engine, resilience and pace.',
     image: '/images/train-conditioning.png',
+    tagline: 'Build the engine to keep going.',
+    highlights: [
+      'Timed circuits scaled to your level',
+      'Pace and effort targets for every session',
+      'Coach-led cues on technique and pacing',
+      'Short, high-output formats that fit a busy day',
+    ],
+    facts: [
+      { label: 'Format', value: 'Coach-led circuits' },
+      { label: 'Level', value: 'All levels' },
+      { label: 'Best for', value: 'Fat loss, endurance and pace' },
+    ],
+    enquiry:
+      'I’m interested in Conditioning. Could you tell me about the circuit sessions, timings and what level they suit?',
   },
   {
     id: 'functional',
@@ -44,6 +76,20 @@ export const TRAINING_PANELS: TrainingPanel[] = [
     description:
       'Movement-first sessions that translate directly into everyday strength.',
     image: '/images/facility-functional.png',
+    tagline: 'Train the way you move.',
+    highlights: [
+      'Mobility, balance and core foundations',
+      'Loaded carries, pushes and pulls',
+      'A movement check to find your starting point',
+      'Low-impact options when you need them',
+    ],
+    facts: [
+      { label: 'Format', value: 'Guided sessions' },
+      { label: 'Level', value: 'All levels' },
+      { label: 'Best for', value: 'Everyday strength and mobility' },
+    ],
+    enquiry:
+      'I’m interested in Functional Training. Could you tell me how the sessions work and which one would suit a beginner?',
   },
   {
     id: 'personal',
@@ -51,6 +97,20 @@ export const TRAINING_PANELS: TrainingPanel[] = [
     description:
       'One-to-one coaching tailored to your body, your goals and your schedule.',
     image: '/images/train-personal.png',
+    tagline: 'A plan built around you.',
+    highlights: [
+      'An initial assessment and clear goal setting',
+      'A custom training plan, updated as you progress',
+      'Regular progress check-ins with your coach',
+      'Scheduling that fits around your week',
+    ],
+    facts: [
+      { label: 'Format', value: 'One-to-one coaching' },
+      { label: 'Level', value: 'Tailored to you' },
+      { label: 'Best for', value: 'Specific goals and accountability' },
+    ],
+    enquiry:
+      'I’m interested in Personal Training. Could you tell me about the available coaches, session packages and how to book an assessment?',
   },
   {
     id: 'recovery',
@@ -58,6 +118,20 @@ export const TRAINING_PANELS: TrainingPanel[] = [
     description:
       'Sauna, cold immersion and mobility work to keep you training longer.',
     image: '/images/facility-recovery.png',
+    tagline: 'Recover well. Train longer.',
+    highlights: [
+      'Sauna sessions to unwind after training',
+      'Cold immersion for faster turnaround',
+      'Guided mobility and stretching work',
+      'Recovery tips from our coaches',
+    ],
+    facts: [
+      { label: 'Format', value: 'Self-guided, with coach tips' },
+      { label: 'Level', value: 'All levels' },
+      { label: 'Best for', value: 'Soreness, mobility and longevity' },
+    ],
+    enquiry:
+      'I’m interested in the Recovery zone. Could you tell me about sauna and cold immersion access and whether it’s included in membership?',
   },
   {
     id: 'group',
@@ -65,6 +139,20 @@ export const TRAINING_PANELS: TrainingPanel[] = [
     description:
       'Coach-led sessions with the energy of a team pushing in the same direction.',
     image: '/images/train-group.png',
+    tagline: 'Train with a team behind you.',
+    highlights: [
+      'Coach-led classes on a weekly timetable',
+      'Scaled options for every fitness level',
+      'Team energy that keeps you consistent',
+      'Great to try with a friend',
+    ],
+    facts: [
+      { label: 'Format', value: 'Coach-led classes' },
+      { label: 'Level', value: 'All levels' },
+      { label: 'Best for', value: 'Motivation and community' },
+    ],
+    enquiry:
+      'I’m interested in Group Classes. Could you share the class timetable and how I can book my first session?',
   },
 ]
 

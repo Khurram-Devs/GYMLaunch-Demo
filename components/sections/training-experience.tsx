@@ -6,10 +6,19 @@ import { ArrowUpRight } from 'lucide-react'
 import { TRAINING_PANELS } from '@/lib/data'
 import { SectionHeading } from '@/components/section-heading'
 import { Reveal } from '@/components/reveal'
+import { TrainingPathModal } from '@/components/training-path-modal'
 import { cn } from '@/lib/utils'
 
 export function TrainingExperience() {
   const [active, setActive] = useState(0)
+  const [selected, setSelected] = useState(0)
+  const [modalOpen, setModalOpen] = useState(false)
+
+  const openPath = (index: number) => {
+    setActive(index)
+    setSelected(index)
+    setModalOpen(true)
+  }
 
   return (
     <section className="py-20 sm:py-24 lg:py-32">
@@ -43,9 +52,9 @@ export function TrainingExperience() {
                 type="button"
                 onMouseEnter={() => setActive(i)}
                 onFocus={() => setActive(i)}
-                onClick={() => setActive(i)}
+                onClick={() => openPath(i)}
                 aria-label={`Explore ${panel.title}`}
-                aria-expanded={isActive}
+                aria-haspopup="dialog"
                 className={cn(
                   'group relative overflow-hidden rounded-lg text-left transition-[flex] delay-150 duration-500 ease-out motion-reduce:delay-0',
                   isActive ? 'flex-[4]' : 'flex-[1]',
@@ -123,33 +132,53 @@ export function TrainingExperience() {
               delay={i * 60}
               className="group relative aspect-[16/10] overflow-hidden rounded-lg"
             >
-              <Image
-                src={panel.image || '/placeholder.svg'}
-                alt={panel.title}
-                fill
-                sizes="(min-width: 640px) 50vw, 100vw"
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-              />
+              <button
+                type="button"
+                onClick={() => openPath(i)}
+                aria-label={`Explore ${panel.title}`}
+                aria-haspopup="dialog"
+                className="absolute inset-0 block text-left"
+              >
+                <Image
+                  src={panel.image || '/placeholder.svg'}
+                  alt={panel.title}
+                  fill
+                  sizes="(min-width: 640px) 50vw, 100vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
 
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
 
-              <div className="absolute inset-x-0 bottom-0 flex flex-col gap-2 p-5">
-                <span className="font-display text-xs font-bold tracking-widest text-accent">
-                  0{i + 1}
-                </span>
+                <div className="absolute inset-x-0 bottom-0 flex flex-col gap-2 p-5">
+                  <span className="font-display text-xs font-bold tracking-widest text-accent">
+                    0{i + 1}
+                  </span>
 
-                <h3 className="font-display text-2xl font-extrabold uppercase tracking-tight text-foreground">
-                  {panel.title}
-                </h3>
+                  <h3 className="font-display text-2xl font-extrabold uppercase tracking-tight text-foreground">
+                    {panel.title}
+                  </h3>
 
-                <p className="text-sm leading-relaxed text-muted-foreground">
-                  {panel.description}
-                </p>
-              </div>
+                  <p className="text-sm leading-relaxed text-muted-foreground">
+                    {panel.description}
+                  </p>
+
+                  <span className="mt-1 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-accent">
+                    Explore
+                    <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+                  </span>
+                </div>
+              </button>
             </Reveal>
           ))}
         </div>
       </div>
+
+      <TrainingPathModal
+        panel={TRAINING_PANELS[selected]}
+        number={selected + 1}
+        open={modalOpen}
+        onOpenChange={setModalOpen}
+      />
     </section>
   )
 }
