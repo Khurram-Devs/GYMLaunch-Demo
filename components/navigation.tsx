@@ -92,11 +92,19 @@ export function Navigation() {
     <header
       className={cn(
         'fixed inset-x-0 top-0 z-50 transition-all duration-500',
-        scrolled
-          ? 'border-b border-border bg-background/80 backdrop-blur-xl'
-          : 'border-b border-transparent',
+        'border-b',
+        scrolled ? 'border-border' : 'border-transparent',
       )}
     >
+      {/* Blur lives on its own layer: backdrop-filter on the header would turn it into the
+          containing block of the fixed mobile drawer and clip the drawer to the header height */}
+      <div
+        aria-hidden="true"
+        className={cn(
+          'pointer-events-none absolute inset-0 -z-10 bg-background/80 backdrop-blur-xl transition-opacity duration-500',
+          scrolled ? 'opacity-100' : 'opacity-0',
+        )}
+      />
       <OffersStrip />
       <div
         className={cn(
