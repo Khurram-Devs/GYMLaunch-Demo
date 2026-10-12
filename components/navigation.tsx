@@ -5,6 +5,7 @@ import { Menu, X } from 'lucide-react'
 import { NAV_LINKS } from '@/lib/data'
 import { BRAND } from '@/lib/brand'
 import { BrandMark } from '@/components/brand-mark'
+import { OffersStrip } from '@/components/offers-strip'
 import { whatsappLinkProps } from '@/lib/whatsapp'
 import { setScrollLock } from '@/lib/scroll-lock'
 import { cn } from '@/lib/utils'
@@ -96,6 +97,7 @@ export function Navigation() {
           : 'border-b border-transparent',
       )}
     >
+      <OffersStrip />
       <div
         className={cn(
           'mx-auto flex max-w-7xl items-center justify-between px-5 transition-all duration-500 sm:px-8',

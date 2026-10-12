@@ -49,4 +49,5 @@ export const SOURCE_LABELS: Record<string, string> = {
   programs: 'Programs list',
   floating: 'Floating WhatsApp',
   location: 'Location section',
+  'offer-modal': 'Offers strip',
 }

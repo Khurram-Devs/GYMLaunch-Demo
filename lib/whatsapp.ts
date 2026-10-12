@@ -1,6 +1,6 @@
 import { BRAND } from '@/lib/brand'
 
-type Intent = 'general' | 'join' | 'visit' | 'program' | 'plan'
+type Intent = 'general' | 'join' | 'visit' | 'program' | 'plan' | 'offer'
 
 type LinkOptions = {
   intent?: Intent
@@ -9,9 +9,19 @@ type LinkOptions = {
   price?: number
   billing?: 'monthly' | 'yearly'
   program?: string
+  offer?: string
+  offerDetail?: string
 }
 
-function buildMessage({ intent = 'general', plan, price, billing, program }: LinkOptions) {
+function buildMessage({
+  intent = 'general',
+  plan,
+  price,
+  billing,
+  program,
+  offer,
+  offerDetail,
+}: LinkOptions) {
   const name = BRAND.name
   switch (intent) {
     case 'join':
@@ -22,6 +32,8 @@ function buildMessage({ intent = 'general', plan, price, billing, program }: Lin
       return `Hi ${name}, I’d like to know more about the ${program} program.`
     case 'plan':
       return `Hi ${name}, I’m interested in the ${plan} plan (PKR ${price?.toLocaleString('en-US')}/month, billed ${billing}). What are the next steps?`
+    case 'offer':
+      return `Hi ${name}, I’d like to avail the ${offer} (${offerDetail}). What are the next steps?`
     default:
       return `Hi ${name}, I’d like to know more about memberships.`
   }
@@ -32,7 +44,7 @@ export function whatsappHref(options: LinkOptions) {
 }
 
 export function whatsappLinkProps(options: LinkOptions) {
-  const interest = options.plan ?? options.program
+  const interest = options.plan ?? options.program ?? options.offer
   return {
     href: whatsappHref(options),
     target: '_blank',

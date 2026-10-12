@@ -130,6 +130,69 @@
   .animate-wa-pulse {
     animation: waPulse 2.2s ease-out infinite;
   }
+
+  /* Offers announcement strip */
+  @keyframes offersMarquee {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+  .offers-track {
+    animation: offersMarquee var(--offers-duration, 40s) linear infinite;
+    will-change: transform;
+  }
+  .offers-track[data-paused='true'],
+  .offers-viewport:focus-within .offers-track {
+    animation-play-state: paused;
+  }
+  @media (hover: hover) {
+    .offers-viewport:hover .offers-track {
+      animation-play-state: paused;
+    }
+  }
+  .offers-mask {
+    mask-image: linear-gradient(to right, transparent, #000 28px, #000 calc(100% - 28px), transparent);
+  }
+
+  @keyframes offersSheen {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(300%);
+    }
+  }
+  .offers-sheen {
+    animation: offersSheen 5s ease-in-out infinite;
+  }
+
+  @keyframes offerZoom {
+    from {
+      transform: scale(1.12);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+  .animate-offer-zoom {
+    animation: offerZoom 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .offers-track {
+      animation: none !important;
+    }
+    .offers-viewport {
+      overflow-x: auto;
+    }
+    .offers-duplicate,
+    .offers-sheen {
+      display: none;
+    }
+  }
 }
 
 /* Scrollbars are hidden everywhere; scrolling still works */
