@@ -47,7 +47,7 @@ export function TrainingExperience() {
                 aria-label={`Explore ${panel.title}`}
                 aria-expanded={isActive}
                 className={cn(
-                  'group relative overflow-hidden rounded-lg text-left transition-[flex] duration-500 ease-out',
+                  'group relative overflow-hidden rounded-lg text-left transition-[flex] delay-150 duration-500 ease-out motion-reduce:delay-0',
                   isActive ? 'flex-[4]' : 'flex-[1]',
                 )}
               >
@@ -57,7 +57,7 @@ export function TrainingExperience() {
                   fill
                   sizes="(min-width: 1024px) 60vw, 100vw"
                   className={cn(
-                    'object-cover transition-all duration-700',
+                    'object-cover transition-all delay-150 duration-700 motion-reduce:delay-0',
                     isActive
                       ? 'scale-100 brightness-100'
                       : 'scale-110 brightness-75',
@@ -66,7 +66,7 @@ export function TrainingExperience() {
 
                 <div
                   className={cn(
-                    'absolute inset-0 transition-all duration-500',
+                    'absolute inset-0 transition-all delay-150 duration-500 motion-reduce:delay-0',
                     isActive
                       ? 'bg-gradient-to-t from-background via-background/40 to-transparent'
                       : 'bg-background/20',
@@ -84,10 +84,10 @@ export function TrainingExperience() {
 
                 <div
                   className={cn(
-                    'absolute inset-x-0 bottom-0 flex flex-col gap-3 p-7 transition-all duration-500',
+                    'absolute inset-x-0 bottom-0 flex flex-col gap-3 p-7 transition-all',
                     isActive
-                      ? 'translate-y-0 opacity-100'
-                      : 'pointer-events-none translate-y-4 opacity-0',
+                      ? 'translate-y-0 opacity-100 delay-[650ms] duration-300 motion-reduce:delay-0'
+                      : 'pointer-events-none translate-y-4 opacity-0 delay-0 duration-150',
                   )}
                 >
                   <span
