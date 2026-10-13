@@ -2,10 +2,10 @@
 
 import { useEffect, useRef, type ReactNode } from 'react'
 
-const MAX_X = 22
-const MAX_Y = 12
-const MAX_TILT = 1.6
-const EASING = 0.07
+const MAX_X = 9
+const MAX_Y = 5
+const MAX_TILT = 0.5
+const EASING = 0.035
 const SETTLE = 0.01
 const START_DELAY_MS = 2600
 
