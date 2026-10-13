@@ -162,6 +162,13 @@ export type Program = {
   description: string
   difficulty: string
   duration: string
+  tagline: string
+  overview: string
+  sessions: string
+  outcomes: string[]
+  phases: { title: string; detail: string }[]
+  coach: string
+  enquiry: string
 }
 
 export const PROGRAMS: Program[] = [
@@ -172,6 +179,23 @@ export const PROGRAMS: Program[] = [
       'A foundational block combining heavy compound lifting with metabolic conditioning.',
     difficulty: 'All levels',
     duration: '8 weeks',
+    tagline: 'Lift heavy. Move fast. Recover well.',
+    overview:
+      'A foundational block that pairs heavy compound lifting with metabolic conditioning, so you build strength and stamina together.',
+    sessions: '3–4 sessions / week',
+    outcomes: [
+      'Stronger squat, hinge, press and pull patterns',
+      'Better work capacity and recovery between efforts',
+      'A clear baseline you can build on after week 8',
+    ],
+    phases: [
+      { title: 'Weeks 1–2', detail: 'Technique and baseline testing' },
+      { title: 'Weeks 3–6', detail: 'Progressive loading with conditioning finishers' },
+      { title: 'Weeks 7–8', detail: 'Peak week and re-test' },
+    ],
+    coach: 'Hamza Rahman',
+    enquiry:
+      'I’d like to join the Strength & Conditioning program (8 weeks). Could you share the start dates, session timings and what I need to get started?',
   },
   {
     number: '02',
@@ -180,6 +204,23 @@ export const PROGRAMS: Program[] = [
       'Volume-focused training designed to build lean, controlled muscle mass.',
     difficulty: 'Intermediate',
     duration: '12 weeks',
+    tagline: 'Build lean, controlled muscle.',
+    overview:
+      'Volume-focused training that targets each muscle group with enough frequency, tempo and effort to drive steady muscle growth.',
+    sessions: '4–5 sessions / week',
+    outcomes: [
+      'Visible, balanced muscle growth',
+      'Better mind-muscle connection and control',
+      'Training habits that support long-term progress',
+    ],
+    phases: [
+      { title: 'Weeks 1–3', detail: 'Volume ramp-up and exercise selection' },
+      { title: 'Weeks 4–9', detail: 'High-volume split with progressive overload' },
+      { title: 'Weeks 10–12', detail: 'Intensity block and progress review' },
+    ],
+    coach: 'Alex Khan',
+    enquiry:
+      'I’d like to join the Hypertrophy program (12 weeks). Could you tell me about the weekly split, start dates and whether it suits an intermediate lifter?',
   },
   {
     number: '03',
@@ -188,6 +229,23 @@ export const PROGRAMS: Program[] = [
       'Full-body movement patterns that build usable, athletic strength.',
     difficulty: 'All levels',
     duration: '6 weeks',
+    tagline: 'Strength you can use every day.',
+    overview:
+      'Full-body movement patterns that build usable, athletic strength, with mobility and balance work built into every session.',
+    sessions: '3 sessions / week',
+    outcomes: [
+      'Better mobility, balance and posture',
+      'Strength that carries into daily life and sport',
+      'Confidence in a wide range of movements',
+    ],
+    phases: [
+      { title: 'Weeks 1–2', detail: 'Movement screen and foundations' },
+      { title: 'Weeks 3–5', detail: 'Loaded carries, pushes, pulls and rotation' },
+      { title: 'Week 6', detail: 'Skill circuit and re-test' },
+    ],
+    coach: 'Maya Ahmed',
+    enquiry:
+      'I’d like to join the Functional Fitness program (6 weeks). Could you share the session timings and how beginners are supported?',
   },
   {
     number: '04',
@@ -196,6 +254,23 @@ export const PROGRAMS: Program[] = [
       'Speed, power and explosiveness programming for competitive athletes.',
     difficulty: 'Advanced',
     duration: '10 weeks',
+    tagline: 'Train like it counts.',
+    overview:
+      'Speed, power and explosiveness programming for competitive athletes, built around your sport and your season.',
+    sessions: '4 sessions / week',
+    outcomes: [
+      'Improved sprint speed and jump power',
+      'Stronger, more resilient joints and tendons',
+      'A peaking plan around your competition dates',
+    ],
+    phases: [
+      { title: 'Weeks 1–3', detail: 'Strength base and movement quality' },
+      { title: 'Weeks 4–8', detail: 'Power, speed and plyometric development' },
+      { title: 'Weeks 9–10', detail: 'Peaking and performance testing' },
+    ],
+    coach: 'Hamza Rahman',
+    enquiry:
+      'I’d like to enquire about the Athletic Performance program (10 weeks). I compete in a sport and would like to know about assessment, schedule and availability.',
   },
   {
     number: '05',
@@ -204,6 +279,23 @@ export const PROGRAMS: Program[] = [
       'Fully bespoke coaching built around your assessment and objectives.',
     difficulty: 'Tailored',
     duration: 'Ongoing',
+    tagline: 'Coaching built around you.',
+    overview:
+      'Fully bespoke coaching based on your assessment and objectives, with a plan that adapts as you progress.',
+    sessions: 'Flexible, you choose',
+    outcomes: [
+      'A plan matched to your goals, schedule and starting point',
+      'Hands-on technique coaching and accountability',
+      'Regular check-ins and plan updates',
+    ],
+    phases: [
+      { title: 'Session 1', detail: 'Assessment and goal setting' },
+      { title: 'Ongoing', detail: 'Coached sessions with a plan that evolves' },
+      { title: 'Every 4 weeks', detail: 'Progress review and reset' },
+    ],
+    coach: 'Danish Ali',
+    enquiry:
+      'I’d like to enquire about Personal Training. Could you tell me about session packages, coach availability and how to book an assessment?',
   },
 ]
 
