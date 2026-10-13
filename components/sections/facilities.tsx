@@ -1,31 +1,54 @@
 'use client'
 
-import { useRef, type PointerEvent } from 'react'
+import { useRef, useState, type PointerEvent } from 'react'
 import Image from 'next/image'
 import { FACILITIES } from '@/lib/data'
 import { SectionHeading } from '@/components/section-heading'
 import { Reveal } from '@/components/reveal'
+import { FacilityModal } from '@/components/facility-modal'
 
 export function Facilities() {
   const scrollerRef = useRef<HTMLDivElement>(null)
-  const dragState = useRef({ active: false, startX: 0, scrollLeft: 0 })
+  const dragState = useRef({ active: false, moved: false, startX: 0, scrollLeft: 0, pointerId: 0 })
+  const [selected, setSelected] = useState(0)
+  const [modalOpen, setModalOpen] = useState(false)
 
   const onPointerDown = (e: PointerEvent<HTMLDivElement>) => {
     const el = scrollerRef.current
     if (!el) return
-    dragState.current = { active: true, startX: e.clientX, scrollLeft: el.scrollLeft }
-    el.setPointerCapture(e.pointerId)
+    dragState.current = {
+      active: true,
+      moved: false,
+      startX: e.clientX,
+      scrollLeft: el.scrollLeft,
+      pointerId: e.pointerId,
+    }
   }
 
   const onPointerMove = (e: PointerEvent<HTMLDivElement>) => {
     const el = scrollerRef.current
-    if (!el || !dragState.current.active) return
-    el.scrollLeft = dragState.current.scrollLeft - (e.clientX - dragState.current.startX)
+    const drag = dragState.current
+    if (!el || !drag.active) return
+    const delta = e.clientX - drag.startX
+    if (!drag.moved) {
+      if (Math.abs(delta) < 6) return
+      drag.moved = true
+      el.setPointerCapture(drag.pointerId)
+    }
+    el.scrollLeft = drag.scrollLeft - delta
   }
 
-  const endDrag = (e: PointerEvent<HTMLDivElement>) => {
-    dragState.current.active = false
-    scrollerRef.current?.releasePointerCapture(e.pointerId)
+  const endDrag = () => {
+    const el = scrollerRef.current
+    const drag = dragState.current
+    if (drag.moved && el?.hasPointerCapture(drag.pointerId)) el.releasePointerCapture(drag.pointerId)
+    drag.active = false
+  }
+
+  const openFacility = (index: number) => {
+    if (dragState.current.moved) return
+    setSelected(index)
+    setModalOpen(true)
   }
 
   return (
@@ -70,6 +93,13 @@ export function Facilities() {
               key={facility.name}
               className="group relative aspect-[3/4] w-[80vw] shrink-0 snap-start overflow-hidden rounded-xl sm:w-[26rem] lg:aspect-[4/5] lg:w-[24rem]"
             >
+              <button
+                type="button"
+                onClick={() => openFacility(i)}
+                aria-haspopup="dialog"
+                aria-label={`View ${facility.name} larger`}
+                className="absolute inset-0 z-10 cursor-[inherit] rounded-xl focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-accent"
+              />
               <Image
                 src={facility.image || '/placeholder.svg'}
                 alt={facility.name}
@@ -97,6 +127,12 @@ export function Facilities() {
           <div className="w-1 shrink-0 sm:w-4" aria-hidden="true" />
         </div>
       </Reveal>
+
+      <FacilityModal
+        facility={FACILITIES[selected]}
+        open={modalOpen}
+        onOpenChange={setModalOpen}
+      />
     </section>
   )
 }
