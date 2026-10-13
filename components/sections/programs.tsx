@@ -1,10 +1,21 @@
+'use client'
+
+import { useState } from 'react'
 import { ArrowRight } from 'lucide-react'
 import { PROGRAMS } from '@/lib/data'
 import { SectionHeading } from '@/components/section-heading'
 import { Reveal } from '@/components/reveal'
-import { whatsappLinkProps } from '@/lib/whatsapp'
+import { ProgramModal } from '@/components/program-modal'
 
 export function Programs() {
+  const [selected, setSelected] = useState(0)
+  const [modalOpen, setModalOpen] = useState(false)
+
+  const openProgram = (index: number) => {
+    setSelected(index)
+    setModalOpen(true)
+  }
+
   return (
     <section id="programs" className="border-t border-border bg-card/30 py-24 lg:py-36">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
@@ -30,9 +41,12 @@ export function Programs() {
         <div className="mt-14 border-t border-border">
           {PROGRAMS.map((program, i) => (
             <Reveal key={program.number} delay={i * 60}>
-              <a
-                {...whatsappLinkProps({ intent: 'program', source: 'programs', program: program.name })}
-                className="group grid grid-cols-1 items-center gap-4 border-b border-border py-8 transition-colors duration-300 hover:bg-foreground/[0.03] sm:grid-cols-12 sm:gap-6 sm:px-4"
+              <button
+                type="button"
+                onClick={() => openProgram(i)}
+                aria-haspopup="dialog"
+                aria-label={`View ${program.name} program details`}
+                className="group grid w-full grid-cols-1 items-center gap-4 border-b border-border py-8 text-left transition-colors duration-300 hover:bg-foreground/[0.03] sm:grid-cols-12 sm:gap-6 sm:px-4"
               >
                 <span className="font-display text-sm font-bold tracking-widest text-accent sm:col-span-1">
                   {program.number}
@@ -62,11 +76,17 @@ export function Programs() {
                     <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" />
                   </span>
                 </span>
-              </a>
+              </button>
             </Reveal>
           ))}
         </div>
       </div>
+
+      <ProgramModal
+        program={PROGRAMS[selected]}
+        open={modalOpen}
+        onOpenChange={setModalOpen}
+      />
     </section>
   )
 }

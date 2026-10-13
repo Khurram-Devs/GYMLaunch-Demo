@@ -33,7 +33,7 @@ function buildMessage({
     case 'visit':
       return `Hi ${name}, I’d like to book a free visit. What times are available?`
     case 'program':
-      return `Hi ${name}, I’d like to know more about the ${program} program.`
+      return `Hi ${name}, ${message ?? `I’d like to know more about the ${program} program.`}`
     case 'plan':
       return `Hi ${name}, I’m interested in the ${plan} plan (PKR ${price?.toLocaleString('en-US')}/month, billed ${billing}). What are the next steps?`
     case 'offer':
