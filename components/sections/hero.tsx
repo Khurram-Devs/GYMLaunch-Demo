@@ -3,6 +3,7 @@ import { VoltButton } from '@/components/volt-button'
 import { BRAND } from '@/lib/brand'
 import { whatsappLinkProps } from '@/lib/whatsapp'
 import { HeroSlogan } from '@/components/hero-slogan'
+import { HeroAthleteParallax } from '@/components/hero-athlete-parallax'
 
 const HIGHLIGHTS = ['24/7 Access', 'Premium Equipment', 'Expert Coaching']
 
@@ -29,16 +30,18 @@ export function Hero() {
         className="pointer-events-none absolute inset-x-0 bottom-0 z-20 flex h-[84%] justify-center lg:h-[90%]"
       >
         <div className="hero-athlete-reveal relative h-full aspect-[433/577]">
-          <div className="hero-athlete-float relative h-full w-full">
-            <Image
-              src="/images/hero-athlete.png"
-              alt=""
-              fill
-              priority
-              sizes="(min-width: 1024px) 50vw, 90vw"
-              className="select-none object-contain object-bottom"
-            />
-          </div>
+          <HeroAthleteParallax>
+            <div className="hero-athlete-float relative h-full w-full">
+              <Image
+                src="/images/hero-athlete.png"
+                alt=""
+                fill
+                priority
+                sizes="(min-width: 1024px) 50vw, 90vw"
+                className="select-none object-contain object-bottom"
+              />
+            </div>
+          </HeroAthleteParallax>
         </div>
       </div>
 
