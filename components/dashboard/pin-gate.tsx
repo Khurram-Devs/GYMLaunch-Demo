@@ -98,7 +98,7 @@ export function PinGate({ onUnlock }: { onUnlock: () => void }) {
           placeholder="••••••"
         />
 
-        <p className="h-4 text-xs font-medium text-destructive" role="alert">
+        <p className="h-4 text-xs font-medium text-red-400" role="alert">
           {error ? 'Incorrect PIN. Try again.' : ''}
         </p>
 
