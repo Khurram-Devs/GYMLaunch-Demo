@@ -258,35 +258,33 @@ function DashboardContent({ onLock }: { onLock: () => void }) {
           ))}
         </div>
 
-        <div className="grid items-start gap-6 lg:grid-cols-[1.6fr_1fr]">
-          <Card className="flex flex-col gap-5">
-            <div className="flex items-center justify-between gap-3">
-              <CardTitle>Enquiry clicks per day</CardTitle>
-              <button
-                type="button"
-                onClick={() => setChartView((v) => (v === 'chart' ? 'table' : 'chart'))}
-                className="rounded-full border border-border px-3 py-1.5 text-xs font-semibold text-foreground/80 transition-colors hover:border-foreground/40"
-              >
-                {chartView === 'chart' ? 'View as table' : 'View as chart'}
-              </button>
-            </div>
-            {chartView === 'chart' ? (
-              <LeadsChart values={clickSeries} />
-            ) : (
-              <LeadsTable values={clickSeries} />
-            )}
-          </Card>
-
-          <div className="flex flex-col gap-6">
-            <Card className="flex flex-col gap-5">
-              <CardTitle>Clicks by membership plan</CardTitle>
-              <BarList items={planClicks} unit="" />
-            </Card>
-            <Card className="flex flex-col gap-5">
-              <CardTitle>Clicks by button</CardTitle>
-              <BarList items={buttonClicks} unit="" />
-            </Card>
+        <Card className="flex flex-col gap-5">
+          <div className="flex items-center justify-between gap-3">
+            <CardTitle>Enquiry clicks per day</CardTitle>
+            <button
+              type="button"
+              onClick={() => setChartView((v) => (v === 'chart' ? 'table' : 'chart'))}
+              className="rounded-full border border-border px-3 py-1.5 text-xs font-semibold text-foreground/80 transition-colors hover:border-foreground/40"
+            >
+              {chartView === 'chart' ? 'View as table' : 'View as chart'}
+            </button>
           </div>
+          {chartView === 'chart' ? (
+            <LeadsChart values={clickSeries} />
+          ) : (
+            <LeadsTable values={clickSeries} />
+          )}
+        </Card>
+
+        <div className="grid gap-6 md:grid-cols-2">
+          <Card className="flex flex-col gap-5">
+            <CardTitle>Clicks by membership plan</CardTitle>
+            <BarList items={planClicks} unit="" />
+          </Card>
+          <Card className="flex flex-col gap-5">
+            <CardTitle>Clicks by button</CardTitle>
+            <BarList items={buttonClicks} unit="" />
+          </Card>
         </div>
 
         <Card className="flex flex-col gap-5">

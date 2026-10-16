@@ -6,6 +6,16 @@ import { saveContact, skipContact } from '@/lib/leads'
 
 const PHONE_PATTERN = /^\+?[0-9\s-]{10,16}$/
 
+function openInNewTab(href: string) {
+  const anchor = document.createElement('a')
+  anchor.href = href
+  anchor.target = '_blank'
+  anchor.rel = 'noopener noreferrer'
+  document.body.appendChild(anchor)
+  anchor.click()
+  anchor.remove()
+}
+
 export function ContactPrompt({
   leadId,
   href,
@@ -23,8 +33,7 @@ export function ContactPrompt({
 
   const finish = () => {
     onClose()
-    const opened = window.open(href, '_blank', 'noopener,noreferrer')
-    if (!opened) window.location.href = href
+    openInNewTab(href)
   }
 
   const skip = () => {
@@ -43,8 +52,7 @@ export function ContactPrompt({
       if (event.key !== 'Escape') return
       skipContact()
       onClose()
-      const opened = window.open(href, '_blank', 'noopener,noreferrer')
-      if (!opened) window.location.href = href
+      openInNewTab(href)
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
