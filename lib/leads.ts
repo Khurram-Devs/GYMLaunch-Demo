@@ -1,39 +1,100 @@
+export type ContactInfo = { name: string; phone: string }
+
 export type DemoLead = {
   id: string
   source: string
+  intent: string
   interest: string | null
   at: number
+  contact?: ContactInfo
 }
 
-const STORAGE_KEY = 'gym-demo-leads'
+type ContactState = ({ skipped: false } & ContactInfo) | { skipped: true }
+
+const LEADS_KEY = 'gym-demo-leads'
+const VISITS_KEY = 'gym-demo-visits'
+const CONTACT_KEY = 'gym-demo-contact'
 const MAX_ENTRIES = 50
 
-export function readLeads(): DemoLead[] {
+function readJson<T>(key: string, fallback: T): T {
   try {
-    const parsed: unknown = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? '[]')
-    return Array.isArray(parsed) ? (parsed as DemoLead[]) : []
+    const raw = localStorage.getItem(key)
+    return raw === null ? fallback : (JSON.parse(raw) as T)
   } catch {
-    return []
+    return fallback
   }
 }
 
-export function recordLead(source: string, interest?: string) {
+function writeJson(key: string, value: unknown) {
   try {
-    const entry: DemoLead = {
-      id: `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
-      source,
-      interest: interest ?? null,
-      at: Date.now(),
-    }
-    localStorage.setItem(STORAGE_KEY, JSON.stringify([entry, ...readLeads()].slice(0, MAX_ENTRIES)))
+    localStorage.setItem(key, JSON.stringify(value))
   } catch {
     /* storage unavailable (private mode) */
   }
 }
 
+export function readLeads(): DemoLead[] {
+  const parsed = readJson<unknown>(LEADS_KEY, [])
+  return Array.isArray(parsed) ? (parsed as DemoLead[]) : []
+}
+
+export function recordLead(source: string, intent: string, interest?: string): string | null {
+  const contact = readContact()
+  const entry: DemoLead = {
+    id: `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
+    source,
+    intent,
+    interest: interest ?? null,
+    at: Date.now(),
+    ...(contact ? { contact } : {}),
+  }
+  writeJson(LEADS_KEY, [entry, ...readLeads()].slice(0, MAX_ENTRIES))
+  return entry.id
+}
+
+export function readVisits(): number {
+  const value = readJson<unknown>(VISITS_KEY, 0)
+  return typeof value === 'number' ? value : 0
+}
+
+export function recordVisit() {
+  try {
+    if (sessionStorage.getItem('gym-demo-session')) return
+    sessionStorage.setItem('gym-demo-session', '1')
+  } catch {
+    return
+  }
+  writeJson(VISITS_KEY, readVisits() + 1)
+}
+
+export function readContact(): ContactInfo | null {
+  const state = readJson<ContactState | null>(CONTACT_KEY, null)
+  return state && !state.skipped ? { name: state.name, phone: state.phone } : null
+}
+
+export function hasContactDecision() {
+  return readJson<ContactState | null>(CONTACT_KEY, null) !== null
+}
+
+export function saveContact(contact: ContactInfo, leadId: string | null) {
+  writeJson(CONTACT_KEY, { skipped: false, ...contact })
+  if (!leadId) return
+  writeJson(
+    LEADS_KEY,
+    readLeads().map((lead) => (lead.id === leadId ? { ...lead, contact } : lead)),
+  )
+}
+
+export function skipContact() {
+  writeJson(CONTACT_KEY, { skipped: true })
+}
+
 export function clearLeads() {
   try {
-    localStorage.removeItem(STORAGE_KEY)
+    localStorage.removeItem(LEADS_KEY)
+    localStorage.removeItem(VISITS_KEY)
+    localStorage.removeItem(CONTACT_KEY)
+    sessionStorage.removeItem('gym-demo-session')
   } catch {
     /* storage unavailable */
   }
@@ -50,4 +111,14 @@ export const SOURCE_LABELS: Record<string, string> = {
   floating: 'Floating WhatsApp',
   location: 'Location section',
   'offer-modal': 'Offers strip',
+}
+
+export const INTENT_LABELS: Record<string, string> = {
+  join: 'Join',
+  visit: 'Free visit',
+  plan: 'Plan',
+  program: 'Program',
+  offer: 'Offer',
+  path: 'Training path',
+  general: 'General',
 }
