@@ -83,3 +83,82 @@ export const MOCK_LEADS: MockLead[] = [
   { id: 'm11', name: 'Zain H.', contact: '+92 3•• ••• 7750', interest: 'Essential plan', source: 'Homepage hero', status: 'Visit booked', ago: '2 days ago' },
   { id: 'm12', name: 'Areeba F.', contact: '+92 3•• ••• 2967', interest: 'Functional fitness', source: 'Google search & maps', status: 'Joined', ago: '3 days ago' },
 ]
+
+/* ------------------------------------------------------------------ */
+/* Operations data. Every figure below maps to something a gym system  */
+/* records: door check-ins, memberships (start/end dates), payments,   */
+/* class bookings. Sample values for the demo.                         */
+/* ------------------------------------------------------------------ */
+
+// Door check-ins per day (member card / QR scan)
+export const DAILY_CHECKINS: number[] = Array.from({ length: 30 }, (_, i) => {
+  const weekend = (i + 2) % 7 === 5 || (i + 2) % 7 === 6
+  const base = weekend ? 118 : 156
+  return Math.round(base + (random() - 0.5) * 30 + (i / 29) * 14)
+})
+
+// Average check-ins by weekday x time band (derived from check-in timestamps)
+export const HEATMAP_DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+export const HEATMAP_BANDS = ['6-8', '8-10', '10-12', '12-2', '2-4', '4-6', '6-8p', '8-10p']
+export const HEATMAP: number[][] = [
+  [18, 14, 9, 12, 8, 24, 41, 22],
+  [20, 15, 10, 11, 9, 26, 44, 24],
+  [17, 13, 8, 12, 8, 23, 39, 20],
+  [21, 16, 10, 13, 9, 27, 46, 25],
+  [16, 12, 9, 10, 7, 19, 31, 15],
+  [10, 22, 24, 14, 9, 12, 14, 6],
+  [6, 14, 18, 10, 7, 9, 11, 4],
+]
+
+// Membership status (from membership start / end dates and freeze records)
+export const MEMBERSHIP_STATUS = {
+  active: 412,
+  expiringSoon: 38, // ends within 7 days
+  frozen: 9,
+  lapsed: 54, // ended in the last 30 days and not renewed
+}
+
+export const RETENTION = {
+  renewalRate: 78, // % of expiring memberships renewed
+  avgTenureMonths: 7.4,
+  churnRate: 4.2, // % of members lost this month
+}
+
+// Active members by plan
+export const ACTIVE_BY_PLAN = PLANS.map((plan) => ({
+  label: plan.name,
+  value: Math.round(MEMBERSHIP_STATUS.active * ((PLAN_WEIGHTS[plan.id] ?? 0) / 100)),
+}))
+
+// Paid amount per month (from payment records), oldest to newest
+export const MONTHLY_REVENUE = [
+  { label: 'May', value: 3_020_000 },
+  { label: 'Jun', value: 3_180_000 },
+  { label: 'Jul', value: 3_090_000 },
+  { label: 'Aug', value: 3_410_000 },
+  { label: 'Sep', value: 3_560_000 },
+  { label: 'Oct', value: 3_720_000 },
+]
+
+// Memberships ending soon: the follow-up list owners act on
+export const EXPIRING_MEMBERS = [
+  { id: 'e1', name: 'Rizwan A.', plan: 'Performance', daysLeft: 1 },
+  { id: 'e2', name: 'Nimra Q.', plan: 'Essential', daysLeft: 2 },
+  { id: 'e3', name: 'Faizan M.', plan: 'Elite', daysLeft: 3 },
+  { id: 'e4', name: 'Komal R.', plan: 'Performance', daysLeft: 5 },
+  { id: 'e5', name: 'Taha L.', plan: 'Essential', daysLeft: 6 },
+]
+
+// Class bookings vs capacity
+export const CLASS_FILL = [
+  { label: 'HIIT Circuit', detail: 'Mon / Wed 7 pm', value: 96 },
+  { label: 'Strength Foundations', detail: 'Tue / Thu 6 pm', value: 88 },
+  { label: 'Functional Fitness', detail: 'Sat 10 am', value: 82 },
+  { label: 'Mobility & Recovery', detail: 'Sun 9 am', value: 54 },
+]
+
+// Visit-to-join funnel (leads, booked a visit, joined)
+export const MEMBER_MIX = {
+  newThisMonth: 46,
+  leavingThisMonth: 17,
+}
