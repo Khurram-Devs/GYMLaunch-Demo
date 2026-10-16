@@ -35,6 +35,7 @@ function buildMessage({
     case 'program':
       return `Hi ${name}, ${message ?? `I’d like to know more about the ${program} program.`}`
     case 'plan':
+      if (message) return `Hi ${name}, ${message}`
       return `Hi ${name}, I’m interested in the ${plan} plan (PKR ${price?.toLocaleString('en-US')}/month, billed ${billing}). What are the next steps?`
     case 'offer':
       return `Hi ${name}, I’d like to avail the ${offer} (${offerDetail}). What are the next steps?`
