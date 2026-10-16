@@ -56,6 +56,7 @@ export function whatsappLinkProps(options: LinkOptions) {
     target: '_blank',
     rel: 'noopener noreferrer',
     'data-lead-source': options.source,
+    'data-lead-intent': options.intent ?? 'general',
     ...(interest ? { 'data-lead-interest': interest } : {}),
   }
 }
