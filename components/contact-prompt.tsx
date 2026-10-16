@@ -1,29 +1,54 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { setScrollLock } from '@/lib/scroll-lock'
 import { saveContact, skipContact } from '@/lib/leads'
 
 const PHONE_PATTERN = /^\+?[0-9\s-]{10,16}$/
 
-export function ContactPrompt({ leadId, onClose }: { leadId: string | null; onClose: () => void }) {
+export function ContactPrompt({
+  leadId,
+  href,
+  onClose,
+}: {
+  leadId: string | null
+  href: string
+  onClose: () => void
+}) {
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
   const [error, setError] = useState<string | null>(null)
 
+  const nameRef = useRef<HTMLInputElement>(null)
+
+  const finish = () => {
+    onClose()
+    const opened = window.open(href, '_blank', 'noopener,noreferrer')
+    if (!opened) window.location.href = href
+  }
+
   const skip = () => {
     skipContact()
-    onClose()
+    finish()
   }
+
+  useEffect(() => {
+    setScrollLock('contact-prompt', true)
+    nameRef.current?.focus()
+    return () => setScrollLock('contact-prompt', false)
+  }, [])
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
       if (event.key !== 'Escape') return
       skipContact()
       onClose()
+      const opened = window.open(href, '_blank', 'noopener,noreferrer')
+      if (!opened) window.location.href = href
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [onClose])
+  }, [href, onClose])
 
   const submit = (event: React.FormEvent) => {
     event.preventDefault()
@@ -38,7 +63,7 @@ export function ContactPrompt({ leadId, onClose }: { leadId: string | null; onCl
       return
     }
     saveContact({ name: cleanName, phone: cleanPhone }, leadId)
-    onClose()
+    finish()
   }
 
   const inputClass =
@@ -60,10 +85,11 @@ export function ContactPrompt({ leadId, onClose }: { leadId: string | null; onCl
             Want us to follow up?
           </h2>
           <p className="text-sm text-muted-foreground">
-            Optional. Share your name and number and the team can reach you. You can also skip.
+            Optional. Share your name and number so the team can reach you, or skip. WhatsApp opens either way.
           </p>
         </div>
         <input
+          ref={nameRef}
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -99,13 +125,13 @@ export function ContactPrompt({ leadId, onClose }: { leadId: string | null; onCl
             onClick={skip}
             className="rounded-full px-4 py-2.5 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground"
           >
-            Skip
+            Skip & continue
           </button>
           <button
             type="submit"
             className="rounded-full bg-accent px-6 py-2.5 text-sm font-bold text-accent-foreground transition-opacity hover:opacity-90"
           >
-            Share details
+            Share & continue
           </button>
         </div>
       </form>

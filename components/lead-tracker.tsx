@@ -7,7 +7,7 @@ import { hasContactDecision, recordLead, recordVisit } from '@/lib/leads'
 
 export function LeadTracker() {
   const pathname = usePathname()
-  const [promptLeadId, setPromptLeadId] = useState<string | null | undefined>(undefined)
+  const [prompt, setPrompt] = useState<{ leadId: string | null; href: string } | null>(null)
 
   useEffect(() => {
     if (!pathname?.startsWith('/dashboard')) recordVisit()
@@ -23,12 +23,17 @@ export function LeadTracker() {
         link.dataset.leadIntent ?? 'general',
         link.dataset.leadInterest,
       )
-      if (!hasContactDecision()) setPromptLeadId(leadId)
+      if (!hasContactDecision()) {
+        const href = link instanceof HTMLAnchorElement ? link.href : ''
+        if (!href) return
+        event.preventDefault()
+        setPrompt({ leadId, href })
+      }
     }
     document.addEventListener('click', onClick)
     return () => document.removeEventListener('click', onClick)
   }, [])
 
-  if (promptLeadId === undefined) return null
-  return <ContactPrompt leadId={promptLeadId} onClose={() => setPromptLeadId(undefined)} />
+  if (!prompt) return null
+  return <ContactPrompt leadId={prompt.leadId} href={prompt.href} onClose={() => setPrompt(null)} />
 }

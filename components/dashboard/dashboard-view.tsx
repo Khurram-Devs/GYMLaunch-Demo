@@ -79,7 +79,7 @@ function mergeCounts(
   for (const [key, value] of extra) {
     if (!known.has(key)) merged.push({ label: key.charAt(0).toUpperCase() + key.slice(1), value })
   }
-  return merged.sort((a, b) => b.value - a.value)
+  return merged
 }
 
 function DashboardContent({ onLock }: { onLock: () => void }) {
@@ -221,7 +221,7 @@ function DashboardContent({ onLock }: { onLock: () => void }) {
             ))}
           </div>
 
-          <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
+          <div className="flex min-h-9 flex-wrap items-center gap-3 text-sm text-muted-foreground">
             <MousePointerClick className="h-4 w-4 text-accent" aria-hidden="true" />
             <span>
               {live.length > 0
@@ -247,9 +247,9 @@ function DashboardContent({ onLock }: { onLock: () => void }) {
 
         <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
           {tiles.map((tile) => (
-            <Card key={tile.label} className="flex flex-col gap-2">
+            <Card key={tile.label} className="flex min-h-[9.5rem] flex-col gap-2">
               <CardTitle>{tile.label}</CardTitle>
-              <p className="font-display text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
+              <p className="font-display text-3xl font-extrabold tabular-nums tracking-tight text-foreground sm:text-4xl">
                 {tile.value.toLocaleString('en-US')}
               </p>
               <Delta value={tile.delta} />
@@ -280,11 +280,11 @@ function DashboardContent({ onLock }: { onLock: () => void }) {
           <div className="flex flex-col gap-6">
             <Card className="flex flex-col gap-5">
               <CardTitle>Clicks by membership plan</CardTitle>
-              <BarList items={planClicks} />
+              <BarList items={planClicks} unit="" />
             </Card>
             <Card className="flex flex-col gap-5">
               <CardTitle>Clicks by button</CardTitle>
-              <BarList items={buttonClicks} />
+              <BarList items={buttonClicks} unit="" />
             </Card>
           </div>
         </div>
