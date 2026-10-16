@@ -5,6 +5,7 @@ import { Menu, X } from 'lucide-react'
 import { NAV_LINKS } from '@/lib/data'
 import { BRAND } from '@/lib/brand'
 import { BrandMark } from '@/components/brand-mark'
+import { CalculatorModal } from '@/components/calculator-modal'
 import { OffersStrip } from '@/components/offers-strip'
 import { whatsappLinkProps } from '@/lib/whatsapp'
 import { setScrollLock } from '@/lib/scroll-lock'
@@ -22,6 +23,7 @@ export function Navigation() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const [active, setActive] = useState('#home')
+  const [calcOpen, setCalcOpen] = useState(false)
   const drawerRef = useRef<HTMLDivElement>(null)
   const triggerRef = useRef<HTMLButtonElement>(null)
   const firstLinkRef = useRef<HTMLAnchorElement>(null)
@@ -89,6 +91,7 @@ export function Navigation() {
   }, [open, closeDrawer])
 
   return (
+    <>
     <header
       className={cn(
         'fixed inset-x-0 top-0 z-50 transition-all duration-500',
@@ -114,7 +117,7 @@ export function Navigation() {
       >
         <Wordmark />
 
-        <nav className="hidden items-center gap-9 lg:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-6 xl:gap-9 lg:flex" aria-label="Primary">
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
@@ -137,6 +140,14 @@ export function Navigation() {
               />
             </a>
           ))}
+          <button
+            type="button"
+            onClick={() => setCalcOpen(true)}
+            aria-haspopup="dialog"
+            className="text-sm font-medium tracking-wide text-muted-foreground transition-colors duration-200 hover:text-foreground"
+          >
+            Calculators
+          </button>
         </nav>
 
         <div className="hidden lg:block">
@@ -207,6 +218,22 @@ export function Navigation() {
               {link.label}
             </a>
           ))}
+          <button
+            type="button"
+            onClick={() => {
+              closeDrawer()
+              setCalcOpen(true)
+            }}
+            aria-haspopup="dialog"
+            className={cn(
+              'text-left font-display text-4xl font-extrabold uppercase tracking-tight text-foreground transition-all duration-500 [@media(max-height:640px)]:text-3xl',
+              open ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0',
+            )}
+            style={{ transitionDelay: open ? `${120 + NAV_LINKS.length * 60}ms` : '0ms' }}
+          >
+            <span className="mr-3 text-sm text-accent align-super">0{NAV_LINKS.length + 1}</span>
+            Calculators
+          </button>
           <a
             {...whatsappLinkProps({ intent: 'join', source: 'nav-mobile' })}
             onClick={closeDrawer}
@@ -217,5 +244,7 @@ export function Navigation() {
         </nav>
       </div>
     </header>
+    <CalculatorModal open={calcOpen} onClose={() => setCalcOpen(false)} />
+    </>
   )
 }

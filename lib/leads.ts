@@ -111,6 +111,7 @@ export const SOURCE_LABELS: Record<string, string> = {
   floating: 'Floating WhatsApp',
   location: 'Location section',
   'offer-modal': 'Offers strip',
+  calculator: 'Calculators',
 }
 
 export const INTENT_LABELS: Record<string, string> = {
